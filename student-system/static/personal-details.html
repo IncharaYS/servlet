@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal details form</title>
+    <style>
+        label{
+             font-weight:bold;
+            }
+    </style>
+</head>
+<body>
+  <h1>Personal Information</h1>
+  <form action="personal">
+      <label for="name">Name:
+          <input type="text" id="name" name="name">
+      </label><br><br>
+      <label for="email">Email:
+          <input type="email" id="email" name="email">
+      </label><br><br>
+      <label for="mobileNo">Mobile number:
+          <input type="number" id="mobileNo" name="mobileNo">
+      </label><br><br>
+      <label for="age">Age:
+          <input type="number" id="age" name="age">
+      </label><br><br>
+<!--      <label for="address" style="display: inline-block; vertical-align:middle">Address:</label>-->
+      <label for="address">Address:</label><br>
+      <label for="address">&emsp;&emsp;&emsp;</label>
+      <textarea name="address" id="address" cols="30" rows="4"></textarea>
+      <br><br>
+      <label for="gender1">Gender:</label>
+          <input type="radio" id="gender1" name="gender" value="Male"/>Male
+          <input type="radio" id="gender2" name="gender" value="Female"/>Female
+          <br><br>
+      <label for="dob">Date of Birth:
+          <input type="date" id="dob" name="dateOfBirth">
+      </label><br><br>
+      <label for="status1">Marital status:</label>
+          <input type="radio" id="status1" name="status" value="Single">Single
+          <input type="radio" id="status2" name="status" value="Married">Married
+      <br><br>
+      <label for="submit">
+          <input type="submit" id="submit" value="Submit">
+      </label>
+  </form>
+</body>
+</html>
