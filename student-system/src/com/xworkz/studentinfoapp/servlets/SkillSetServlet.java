@@ -26,6 +26,6 @@ public class SkillSetServlet extends GenericServlet {
         System.out.println("IDE's:"+ Arrays.toString(servletRequest.getParameterValues("ide")));
         System.out.println("UI Technologies:"+ Arrays.toString(servletRequest.getParameterValues("uiTechnologies")));
         System.out.println("Frameworks:"+ Arrays.toString(servletRequest.getParameterValues("frameworks")));
-        System.out.println("Other skills:"+servletRequest.getParameter("otherSkills"));
+        System.out.println("Other skills:"+servletRequest.getParameter("otherSkills")+"\n");
     }
 }

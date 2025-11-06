@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient details</title>
+  <style>
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      margin-top: 20px;
+      font-size: 24px;
+      padding-top:10px;
+    }
+    div{
+        padding-left:20px
+        }
+  </style>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Forms</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="buyer-form.html">Buyer Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="seller-form.html">Seller Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="driving-license-form.html">Driving License Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="patient-details-form.html">Patient Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="real-estate-forms.html">Real Estate Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div>
+<h2 class="display-5 fw-semibold">Patient Details</h2><br>
+
+<form action="patient" method="post">
+  <label for="firstName">First Name:
+    <input type="text" id="firstName" name="firstName">
+  </label><br><br>
+  <label for="lastName">Last Name:
+    <input type="text" id="lastName" name="lastName">
+  </label><br><br>
+  <label for="age">Age:
+    <input type="number" id="age" name="age">
+  </label><br><br>
+  <label for="gender">Gender:
+    <input type="radio" id="gender" name="gender" value="Male">Male
+    <input type="radio" id="gender1" name="gender" value="Female">Female
+  </label><br><br>
+  <label for="contactNo">Contact Number:
+    <input type="tel" id="contactNo" name="contactNo">
+  </label><br><br>
+  <label for="email">Email:
+    <input type="email" id="email" name="email">
+  </label><br><br>
+  <label for="bloodGroup">Blood group:
+    <select name="bloodGroup" id="bloodGroup">
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select>
+  </label><br><br>
+  <label for="diagnosis">Diagnosis:
+    <input type="text" id="diagnosis" name="diagnosis">
+  </label><br><br>
+  <label for="consultingDoctor">Consulting Doctor:
+    <input type="text" id="consultingDoctor" name="consultingDoctor">
+  </label><br><br>
+  <label for="emergencyContact">Emergency Contact:
+    <input type="text" id="emergencyContact" name="emergencyContact">
+  </label><br><br>
+  <input type="submit" value="Submit"><br><br>
+  
+  
+</form></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
