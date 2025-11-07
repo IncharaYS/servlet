@@ -52,26 +52,26 @@
 
 <form action="patient" method="post">
   <label for="firstName">First Name:
-    <input type="text" id="firstName" name="firstName">
+    <input type="text" id="firstName" name="firstName" required>
   </label><br><br>
   <label for="lastName">Last Name:
-    <input type="text" id="lastName" name="lastName">
+    <input type="text" id="lastName" name="lastName" required>
   </label><br><br>
   <label for="age">Age:
-    <input type="number" id="age" name="age">
+    <input type="number" id="age" name="age" required>
   </label><br><br>
   <label for="gender">Gender:
     <input type="radio" id="gender" name="gender" value="Male">Male
     <input type="radio" id="gender1" name="gender" value="Female">Female
   </label><br><br>
   <label for="contactNo">Contact Number:
-    <input type="tel" id="contactNo" name="contactNo">
+    <input type="tel" id="contactNo" name="contactNo"  required>
   </label><br><br>
   <label for="email">Email:
-    <input type="email" id="email" name="email">
+    <input type="email" id="email" name="email" required>
   </label><br><br>
   <label for="bloodGroup">Blood group:
-    <select name="bloodGroup" id="bloodGroup">
+    <select name="bloodGroup" id="bloodGroup" required>
       <option value="A+">A+</option>
       <option value="A-">A-</option>
       <option value="B+">B+</option>
@@ -83,13 +83,13 @@
     </select>
   </label><br><br>
   <label for="diagnosis">Diagnosis:
-    <input type="text" id="diagnosis" name="diagnosis">
+    <input type="text" id="diagnosis" name="diagnosis" required>
   </label><br><br>
   <label for="consultingDoctor">Consulting Doctor:
-    <input type="text" id="consultingDoctor" name="consultingDoctor">
+    <input type="text" id="consultingDoctor" name="consultingDoctor" required>
   </label><br><br>
   <label for="emergencyContact">Emergency Contact:
-    <input type="text" id="emergencyContact" name="emergencyContact">
+    <input type="text" id="emergencyContact" name="emergencyContact" required>
   </label><br><br>
   <input type="submit" value="Submit"><br><br>
   

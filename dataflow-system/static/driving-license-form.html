@@ -51,40 +51,40 @@
 <h2 class="display-5 fw-semibold ">Driving License Form</h2><br>
 <form action="drivingLicense" method="post">
   <label for="firstName">First name:
-    <input type="text" id="firstName" name="firstName">
+    <input type="text" id="firstName" name="firstName" required>
   </label><br><br>
   <label for="lastName">Last name:
-    <input type="text" id="lastName" name="lastName">
+    <input type="text" id="lastName" name="lastName" required>
   </label><br><br>
   <label for="age">Age:
-    <input type="number" id="age" name="age">
+    <input type="number" id="age" name="age" required>
   </label><br><br>
   <label for="gender">Gender:
   <input type="radio" id="gender" name="gender" value="Male">Male
   <input type="radio" id="gender1" name="gender" value="Female">Female
   </label><br><br>
   <label for="dob">Date of Birth:
-    <input type="date" id="dob" name="dob">
+    <input type="date" id="dob" name="dob" required>
   </label><br><br>
   <label for="placeOfBirth">Place of Birth:
     <input type="text" id="placeOfBirth" name="placeOfBirth">
   </label><br><br>
   <label for="address">Permanent Address:</label><br>
   <label for="address">&emsp;&emsp;&emsp;</label>
-  <textarea name="permanentAddress" id="address" cols="30" rows="4"></textarea>
+  <textarea name="permanentAddress" id="address" cols="30" rows="4" required></textarea>
   <br><br>
   <label for="address1">Temporary Address:</label><br>
   <label for="address1">&emsp;&emsp;&emsp;</label>
-  <textarea name="tempAddress" id="address1" cols="30" rows="4"></textarea>
+  <textarea name="tempAddress" id="address1" cols="30" rows="4" required></textarea>
   <br><br>
   <label for="contactNo">Contact Number:
-    <input type="tel" id="contactNo" name="contactNo">
+    <input type="tel" id="contactNo" name="contactNo" required>
   </label><br><br>
   <label for="email">Email:
-    <input type="email" id="email" name="email">
+    <input type="email" id="email" name="email" required>
   </label><br><br>
   <label for="bloodGroup">Blood group:
-    <select name="bloodGroup" id="bloodGroup">
+    <select name="bloodGroup" id="bloodGroup" required>
       <option value="A+">A+</option>
       <option value="A-">A-</option>
       <option value="B+">B+</option>
@@ -96,14 +96,14 @@
     </select>
   </label><br><br>
   <label for="AadhaarNo">Aadhaar number:
-    <input type="text" id="AadhaarNo" name="aadhaarNo">
+    <input type="text" id="AadhaarNo" name="aadhaarNo" required>
   </label><br><br>
   <label for="previousLicense">Had license previously?:
   <input type="radio" id="previousLicense" name="previousLicense" value="Yes">Yes
   <input type="radio" id="previousLicense1" name="previousLicense" value="No">No
   </label><br><br>
   <label for="state">State:
-    <select name="state" id="state">
+    <select name="state" id="state" required>
       <option value="Karnataka+">Karnataka</option>
       <option value="Kerala">Kerala</option>
       <option value="Tamil Nadu">Tamil Nadu</option>

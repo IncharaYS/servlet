@@ -6,6 +6,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = "/buyer",loadOnStartup = 2)
 public class BuyerServlet extends GenericServlet {
@@ -27,5 +28,22 @@ public class BuyerServlet extends GenericServlet {
         System.out.println("Move in Date:"+servletRequest.getParameter("moveInDate"));
         System.out.println("City:"+servletRequest.getParameter("city"));
         System.out.println("Additional requirements:"+servletRequest.getParameter("additional")+"\n");
+
+        PrintWriter writer=servletResponse.getWriter();
+        servletResponse.setContentType("text/html");
+
+        writer.println("<h2>Buyer details submitted successfully<br></h2>");
+        writer.println("<h3>Buyer details are:<br></h3>");
+        writer.println("<p>Buyer Name:"+servletRequest.getParameter("buyerName")+"<br></p>");
+        writer.println("<p>Contact number:"+servletRequest.getParameter("contactNo")+"<br></p>");
+        writer.println("<p>Email:"+servletRequest.getParameter("email")+"<br></p>");
+        writer.println("<p>Preferred location:"+servletRequest.getParameter("preferredLocation")+"<br></p>");
+        writer.println("<p>Preferred size:"+servletRequest.getParameter("preferredSize")+"sq ft<br></p>");
+        writer.println("<p>Property type:"+servletRequest.getParameter("propertyType")+"<br></p>");
+        writer.println("<p>Budget:"+servletRequest.getParameter("budget")+"<br></p>");
+        writer.println("<p>Move in Date:"+servletRequest.getParameter("moveInDate")+"<br></p>");
+        writer.println("<p>City:"+servletRequest.getParameter("city")+"<br></p>");
+        writer.println("<p>Additional requirements:"+servletRequest.getParameter("additional")+"<br></p>");
+
     }
 }
