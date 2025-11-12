@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Flight Ticket Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+
+<body class="bg-success-subtle">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Booking</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="movie-ticket-booking.html">Movie Ticket Booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product-booking.html">Product booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="flight-booking.html">Flight ticket booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="food-order.html">Food booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blood-booking.html">Blood donation</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="m-3">
+<p class="h1 myHeading" style="
+    color: #2b68d1; text-align: center;">Flight Ticket Booking</p> <br>
+<form action="flight" method="post">
+    <h3>Fill the below details</h3> <br>
+
+    <div class="mb-3">
+        <label for="passengerName" class="form-label">Passenger Name</label>
+        <input type="text" class="form-control" id="passengerName" required name="passengerName" placeholder="Enter passenger name">
+    </div>
+    <br>
+
+    <div class="mb-3">
+        <label for="passportNo" class="form-label">Passport Number</label>
+        <input type="text" class="form-control" id="passportNo" required name="passportNo" placeholder="Enter passport number">
+    </div>
+    <br>
+
+    <div class="mb-3">
+        <label for="destination" class="form-label">Select Destination</label>
+        <div class="col-sm-12">
+            <select class="form-select" id="destination" name="destination" required>
+                <option selected>----SELECT----</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="London">London</option>
+                <option value="Paris">Paris</option>
+            </select>
+        </div>
+    </div>
+    <br>
+
+    <div class="mb-3">
+        <label for="specialAssistance" class="form-label">Special Assistance Requests</label>
+        <textarea class="form-control" name="specialAssistance" id="specialAssistance" placeholder="Enter any special requests"></textarea>
+    </div>
+
+
+
+    <div class="mb-3">
+        <label class="form-label">Seat Preference</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="seatPreference" id="window" value="Window">
+            <label class="form-check-label" for="window">Window</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="seatPreference" id="aisle" value="Aisle">
+            <label class="form-check-label" for="aisle">Aisle</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="seatPreference" id="middle" value="Middle">
+            <label class="form-check-label" for="middle">Middle</label>
+        </div>
+        <br>
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</div>
+</form>>
+</body>
+</html>
