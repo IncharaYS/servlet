@@ -40,7 +40,6 @@ public class MovieTicketServlet extends HttpServlet {
 
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
-
         writer.println("<html>");
         writer.println("<head>");
         writer.println("<meta charset='UTF-8'>");
