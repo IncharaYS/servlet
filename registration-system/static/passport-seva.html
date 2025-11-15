@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passport seva kendra</title>
+<!--  <style>-->
+<!--    body {-->
+<!--      padding: 20px;-->
+<!--    }-->
+<!--  </style>-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="m-3">
+<h1 class="text-primary">User Registration</h1>
+<br>
+<form action="passportseva" method="post">
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-3 pt-0">Register to apply at</legend>
+    <div class="col-sm-3">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="applyAt" id="gridRadios1" value="CPV Delhi" checked required/>
+        <label class="form-check-label" for="gridRadios1">
+          CPV Delhi
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="applyAt" id="gridRadios2" value="Passport Office">
+        <label class="form-check-label" for="gridRadios2">
+          Passport Office
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="row mb-3">
+    <label for="passportOffice" class="col-sm-3 col-form-label">Passport Office<sub>(As per Present Residential Address)</sub></label>
+    <div class="col-sm-3">
+      <select class="form-select" aria-label="Default select example" id="passportOffice" name="passportOffice">
+        <option selected>-----Select-----</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bhopal">Bhopal</option>
+        <option value="Goa">Goa</option>
+      </select>
+    </div>
+    <div class="col-sm-4">
+      <p class="small"><sub>Tibetan Refugees applying for Identity Certificate must register <br> with 'Delhi' Passport Office.</sub></p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="givenName" class="col-sm-3 col-form-label">Given Name <sub>(Max 45 Characters)*</sub></label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="givenName" name="givenName" required/>
+    </div>
+    <div class="col-sm-4">
+      <p class="small"><sub>Select the 'CPV Delhi' option to apply for Diplomatic/Official <br>
+        passport at Consular, Passport and Visa (CPV) division, Delhi.</sub></p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="surName" class="col-sm-3 col-form-label">Surname <sub>(Max 45 Characters)</sub></label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="surName" name="surName" required/>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="dateOfBirth" class="col-sm-3 col-form-label">Date of Birth (DD/MM/YYYY)</label>
+    <div class="col-sm-3">
+      <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required/>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="email" class="col-sm-3 col-form-label">E-mail Id <sub>(Max 35 Characters)*</sub></label>
+    <div class="col-sm-3">
+      <input type="email" class="form-control" id="email" name="email" required/>
+    </div>
+  </div>
+
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-3 pt-0">Do you want your Login Id <br>
+      to be same as E-mail Id?</legend>
+    <div class="col-sm-3">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sameLoginId" id="sameLoginId" value="Yes" checked required/>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div  class="form-check">
+        <input class="form-check-input" type="radio" name="sameLoginId" id="sameLoginId2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+
+  <div class="row mb-3">
+    <label for="loginId" class="col-sm-3 col-form-label">Login Id </label>
+    <div class="col-sm-3">
+      <input type="email" class="form-control" id="loginId" name="loginId" required/>
+    </div>
+    <div class="col-sm-4">
+      <p class="small"><a href="">Check Availability</a></p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="password" class="col-sm-3 col-form-label">Password</label>
+    <div class="col-sm-3">
+      <input type="password" class="form-control" id="password" name="password" required/>
+    </div>
+    <div class="col-sm-4">
+      <p class="small"><a href="">Password Policy</a></p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="confirmPassword" class="col-sm-3 col-form-label">Confirm Password</label>
+    <div class="col-sm-3">
+      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required/>
+    </div>
+  </div>
+
+
+  <div class="row mb-3">
+    <label for="hintQuestion" class="col-sm-3 col-form-label">Hint Question</label>
+    <div class="col-sm-3">
+      <select class="form-select" aria-label="Default select example" id="hintQuestion" name="hintQuestion">
+        <option selected>-----Select-----</option>
+        <option value="Birth city">Birth city</option>
+        <option value="Favourite color">Favourite color</option>
+        <option value="Favourite food">Favourite food</option>
+        <option value="First school">First school</option>
+      </select>
+  </div>
+    <br> <br>
+    <div class="row mb-3">
+      <label for="hintAnswer" class="col-sm-3 col-form-label">Hint Answer</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" required/>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="captcha" class="col-sm-3 col-form-label">Enter Characters Displayed</label>
+      <div class="col-sm-3">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOiH7oFJpOHuO2ZY6jHdoZiTiITmMifz7mKg&s" alt="captcha" width="200" height="50"><br>
+        <br>
+        <input type="text" class="form-control" id="captcha" name="captcha" required/>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="col-12 ms-5" style="padding-left: 300px;">
+      <button class="btn btn-primary" type="submit">Register</button>
+      <button class="btn btn-primary" type="reset">Clear</button>
+    </div>
+    </div>
+</form>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
