@@ -38,6 +38,8 @@ public class BloodServlet extends HttpServlet {
             }
         }
 
+
+
         resp.setContentType("text/html");
         PrintWriter writer=resp.getWriter();
 
