@@ -7,15 +7,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/customerFeedback",loadOnStartup = 4)
+@WebServlet(urlPatterns = "/feedback", loadOnStartup = 1)
 public class CustomerFeedbackServlet extends HttpServlet {
 
-    public CustomerFeedbackServlet(){
+
+    public CustomerFeedbackServlet() {
         System.out.println("Customer feedback servlet instance created");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String name=req.getParameter("name");
+        String email=req.getParameter("email");
+        String comments=req.getParameter("comments");
+        String rating=req.getParameter("rating");
+
+        req.setAttribute("name",name);
+        req.setAttribute("email",email);
+        req.setAttribute("comments",comments);
+        req.setAttribute("rating",rating);
+
+        req.getRequestDispatcher("CustomerFeedbackResponse.jsp").forward(req,resp);
     }
 }
