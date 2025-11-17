@@ -24,18 +24,18 @@ public class CoffeeLandServlet extends HttpServlet {
         String profit=req.getParameter("profit");
         String fertilizer=req.getParameter("fertilizer");
 
-        Long sizeLong=Long.parseLong(size);
+        Double sizeDouble=Double.parseDouble(size);
         Integer totalPlantsInt=Integer.parseInt(totalPlants);
         Long yeildLong=Long.parseLong(yield);
-        Long profitLong=Long.parseLong(profit);
-        Long expenditureLong=Long.parseLong(expenditure);
-        Long fertilizerQuantity=Long.parseLong(fertilizer);
+        Double profitDouble=Double.parseDouble(profit);
+        Double expenditureDouble=Double.parseDouble(expenditure);
+        Double fertilizerQuantity=Double.parseDouble(fertilizer);
 
-        req.setAttribute("size",sizeLong);
+        req.setAttribute("size",sizeDouble);
         req.setAttribute("totalPlants",totalPlantsInt);
         req.setAttribute("yield",yeildLong);
-        req.setAttribute("expenditure",expenditureLong);
-        req.setAttribute("profit",profitLong);
+        req.setAttribute("expenditure",expenditureDouble);
+        req.setAttribute("profit",profitDouble);
         req.setAttribute("fertilizer",fertilizerQuantity);
 
         req.getRequestDispatcher("CoffeeLandResponse.jsp").forward(req,resp);

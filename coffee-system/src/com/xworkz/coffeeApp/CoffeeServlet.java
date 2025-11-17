@@ -21,9 +21,9 @@ public class CoffeeServlet extends HttpServlet {
         String farmer=req.getParameter("farmer");
         String location=req.getParameter("location");
 
-        Long priceLong=Long.parseLong(price);
+        Double priceDouble=Double.parseDouble(price);
         Integer quantityInt=Integer.parseInt(quantity);
-        Long totalPrice=priceLong*quantityInt;
+        Double totalPrice=priceDouble*quantityInt;
 
         req.setAttribute("type",type);
         req.setAttribute("price",totalPrice);
