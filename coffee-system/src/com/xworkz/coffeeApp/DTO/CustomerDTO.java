@@ -12,7 +12,7 @@ public class CustomerDTO implements Serializable,Comparable<CustomerDTO> {
     private int quantity;
     private String paymentMode;
 
-    public CustomerDTO(long contactNo, int quantity, String paymentMode, String name, String flavor) {
+    public CustomerDTO(String name,long contactNo,String flavor, int quantity, String paymentMode) {
         this.contactNo = contactNo;
         this.quantity = quantity;
         this.paymentMode = paymentMode;

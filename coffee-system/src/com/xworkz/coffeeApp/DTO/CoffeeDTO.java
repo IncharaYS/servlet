@@ -15,7 +15,7 @@ public class CoffeeDTO implements Serializable,Comparable<CoffeeDTO> {
 
     public CoffeeDTO(){}
 
-    public CoffeeDTO(String coffeeType, int quantity, double price, String location, String farmer) {
+    public CoffeeDTO(String coffeeType,  double price,int quantity,  String farmer,String location) {
         this.coffeeType = coffeeType;
         this.quantity = quantity;
         this.price = price;

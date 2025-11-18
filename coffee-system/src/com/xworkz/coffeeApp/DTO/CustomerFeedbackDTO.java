@@ -12,7 +12,7 @@ public class CustomerFeedbackDTO implements Serializable,Comparable<CustomerFeed
     private String comments;
     private double rating;
 
-    public CustomerFeedbackDTO( String name, String email,String comments,double rating) {
+    public CustomerFeedbackDTO( String name, String email,String comments, double rating) {
         this.name = name;
         this.email = email;
         this.comments = comments;

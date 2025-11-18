@@ -1,5 +1,9 @@
 package com.xworkz.coffeeApp.servlets;
 
+import com.xworkz.coffeeApp.DTO.CustomerDTO;
+import com.xworkz.coffeeApp.service.CustomerService;
+import com.xworkz.coffeeApp.service.CustomerServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +36,10 @@ public class CustomerServlet extends HttpServlet {
         req.setAttribute("flavour",flavour);
         req.setAttribute("quantity",quantityInt);
         req.setAttribute("paymentMode",paymentMode);
+
+        CustomerDTO customerDTO=new CustomerDTO(name,contactNoLong,flavour,quantityInt,paymentMode);
+        CustomerService customerService=new CustomerServiceImpl();
+        customerService.validateAndSave(customerDTO);
 
         req.getRequestDispatcher("CustomerResponse.jsp").forward(req,resp);
     }

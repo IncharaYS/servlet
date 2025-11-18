@@ -11,7 +11,7 @@ public class CoffeeLandDTO implements Serializable,Comparable<CoffeeLandDTO> {
     private double profit;
     private double fertilizerQuantity;
 
-    public CoffeeLandDTO(double expenditure, double yield, long totalPlants, double size, double profit, double fertilizerQuantity) {
+    public CoffeeLandDTO(double size,long totalPlants,double yield,double expenditure,double profit,double fertilizerQuantity) {
         this.expenditure = expenditure;
         this.yield = yield;
         this.totalPlants = totalPlants;

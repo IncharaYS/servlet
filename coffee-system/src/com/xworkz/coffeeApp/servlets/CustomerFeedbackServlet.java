@@ -1,6 +1,8 @@
 package com.xworkz.coffeeApp.servlets;
 
 import com.xworkz.coffeeApp.DTO.CustomerFeedbackDTO;
+import com.xworkz.coffeeApp.service.CustomerFeedbackService;
+import com.xworkz.coffeeApp.service.CustomerFeedbackServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,16 +27,16 @@ public class CustomerFeedbackServlet extends HttpServlet {
         String comments=req.getParameter("comments");
         String rating=req.getParameter("rating");
 
-        Double ratingDouble=Double.parseDouble(rating);
+        double ratingDouble=Double.parseDouble(rating);
 
         req.setAttribute("name",name);
         req.setAttribute("email",email);
         req.setAttribute("comments",comments);
         req.setAttribute("rating",ratingDouble);
 
-
         CustomerFeedbackDTO customerFeedbackDTO=new CustomerFeedbackDTO(name,email,comments,ratingDouble);
-
+        CustomerFeedbackService customerFeedbackService=new CustomerFeedbackServiceImpl();
+        customerFeedbackService.validateAndSave(customerFeedbackDTO);
 
         req.getRequestDispatcher("CustomerFeedbackResponse.jsp").forward(req,resp);
     }

@@ -50,7 +50,7 @@
 
   <div class="mb-3">
     <label class="form-label" for="rating">Rating:</label>
-    <input type="number" id="rating" class="form-control" name="rating" required>
+    <input type="text" id="rating" class="form-control" name="rating" required>
   </div> <br>
 
   <button type="submit" class="btn btn-secondary w-25">Submit</button>

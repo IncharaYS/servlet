@@ -1,5 +1,9 @@
 package com.xworkz.coffeeApp.servlets;
 
+import com.xworkz.coffeeApp.DTO.CoffeeDTO;
+import com.xworkz.coffeeApp.service.CoffeeService;
+import com.xworkz.coffeeApp.service.CoffeeServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +25,8 @@ public class CoffeeServlet extends HttpServlet {
         String farmer=req.getParameter("farmer");
         String location=req.getParameter("location");
 
-        Double priceDouble=Double.parseDouble(price);
-        Integer quantityInt=Integer.parseInt(quantity);
+        double priceDouble=Double.parseDouble(price);
+        int quantityInt=Integer.parseInt(quantity);
         Double totalPrice=priceDouble*quantityInt;
 
         req.setAttribute("type",type);
@@ -30,6 +34,10 @@ public class CoffeeServlet extends HttpServlet {
         req.setAttribute("quantity",quantity);
         req.setAttribute("farmer",farmer);
         req.setAttribute("location",location);
+
+        CoffeeDTO coffeeDTO=new CoffeeDTO(type,priceDouble,quantityInt,farmer,location);
+        CoffeeService coffeeService=new CoffeeServiceImpl();
+        coffeeService.validateAndSave(coffeeDTO);
 
         req.getRequestDispatcher("CoffeeResponse.jsp").forward(req,resp);
 

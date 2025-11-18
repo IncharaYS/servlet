@@ -6,7 +6,7 @@ import java.util.Objects;
 public class CafeteriaDTO implements Serializable,Comparable<CafeteriaDTO> {
     private String name;
     private String location;
-    private double franchiseName;
+    private String franchiseName;
     private String ownerName;
     private String gstNo;
 
@@ -14,7 +14,7 @@ public class CafeteriaDTO implements Serializable,Comparable<CafeteriaDTO> {
 
     }
 
-    public CafeteriaDTO(double franchiseName, String ownerName, String name, String location, String gstNo) {
+    public CafeteriaDTO(String name,  String location,String franchiseName, String ownerName, String gstNo) {
         this.franchiseName = franchiseName;
         this.ownerName = ownerName;
         this.name = name;
@@ -22,11 +22,11 @@ public class CafeteriaDTO implements Serializable,Comparable<CafeteriaDTO> {
         this.gstNo = gstNo;
     }
 
-    public double getFranchiseName() {
+    public String getFranchiseName() {
         return franchiseName;
     }
 
-    public void setFranchiseName(double franchiseName) {
+    public void setFranchiseName(String franchiseName) {
         this.franchiseName = franchiseName;
     }
 
@@ -78,7 +78,7 @@ public class CafeteriaDTO implements Serializable,Comparable<CafeteriaDTO> {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CafeteriaDTO that = (CafeteriaDTO) o;
-        return Double.compare(franchiseName, that.franchiseName) == 0 && Objects.equals(name, that.name) && Objects.equals(location, that.location) && Objects.equals(ownerName, that.ownerName) && Objects.equals(gstNo, that.gstNo);
+        return Objects.equals(franchiseName, that.franchiseName)&& Objects.equals(name, that.name) && Objects.equals(location, that.location) && Objects.equals(ownerName, that.ownerName) && Objects.equals(gstNo, that.gstNo);
     }
 
     @Override

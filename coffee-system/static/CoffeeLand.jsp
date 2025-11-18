@@ -34,7 +34,7 @@
 <form action="coffeeLand" method="post">
   <div class="mb-3">
     <label class="form-label">Size by Acre:</label>
-    <input type="number" class="form-control" name="size" required>
+    <input type="text" class="form-control" name="size" required>
   </div>
 
   <div class="mb-3">
@@ -44,7 +44,7 @@
 
     <div class="mb-3">
       <label class="form-label">Total Yield:</label>
-      <input type="number" class="form-control" name="yield" required>
+      <input type="text" class="form-control" name="yield" required>
     </div>
 
 
