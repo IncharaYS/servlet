@@ -1,4 +1,4 @@
-package com.xworkz.coffeeApp;
+package com.xworkz.coffeeApp.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

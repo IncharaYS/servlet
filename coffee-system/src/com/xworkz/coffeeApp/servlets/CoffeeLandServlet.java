@@ -1,4 +1,4 @@
-package com.xworkz.coffeeApp;
+package com.xworkz.coffeeApp.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,15 +25,15 @@ public class CoffeeLandServlet extends HttpServlet {
         String fertilizer=req.getParameter("fertilizer");
 
         Double sizeDouble=Double.parseDouble(size);
-        Integer totalPlantsInt=Integer.parseInt(totalPlants);
-        Long yeildLong=Long.parseLong(yield);
+        Long totalPlantsLong=Long.parseLong(totalPlants);
+        Double yeildDouble=Double.parseDouble(yield);
         Double profitDouble=Double.parseDouble(profit);
         Double expenditureDouble=Double.parseDouble(expenditure);
         Double fertilizerQuantity=Double.parseDouble(fertilizer);
 
         req.setAttribute("size",sizeDouble);
-        req.setAttribute("totalPlants",totalPlantsInt);
-        req.setAttribute("yield",yeildLong);
+        req.setAttribute("totalPlants",totalPlantsLong);
+        req.setAttribute("yield",yeildDouble);
         req.setAttribute("expenditure",expenditureDouble);
         req.setAttribute("profit",profitDouble);
         req.setAttribute("fertilizer",fertilizerQuantity);
