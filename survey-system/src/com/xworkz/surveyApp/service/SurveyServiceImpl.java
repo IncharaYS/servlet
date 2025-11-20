@@ -18,7 +18,7 @@ public class SurveyServiceImpl implements SurveyService {
                 System.err.println("Invalid Name entered");
                 isInvalid = true;
             }
-            else if (surveyDTO.getAge()==0||surveyDTO.getAge()>130) {
+            else if (surveyDTO.getAge()<0||surveyDTO.getAge()>130) {
                 System.err.println("Invalid Age entered");
                 isInvalid = true;
             }
@@ -33,12 +33,12 @@ public class SurveyServiceImpl implements SurveyService {
                 isInvalid = true;
             }
 
-            else if (surveyDTO.getHeight()==0||surveyDTO.getHeight()>300) {
+            else if (surveyDTO.getHeight()<0||surveyDTO.getHeight()>300) {
                 System.err.println("Invalid Height entered");
                 isInvalid = true;
             }
 
-            else if (surveyDTO.getWeight()==0||surveyDTO.getWeight()>1000) {
+            else if (surveyDTO.getWeight()<0||surveyDTO.getWeight()>1000) {
                 System.err.println("Invalid Weight entered");
                 isInvalid = true;
             }
@@ -103,7 +103,7 @@ public class SurveyServiceImpl implements SurveyService {
 
 
 
-            else if (surveyDTO.getMobileNo() <= 0||surveyDTO.getNativePlace().length()<3) {
+            else if (surveyDTO.getMobileNo()<0||surveyDTO.getNativePlace().length()<3) {
                 System.err.println("Invalid Mobile Number entered");
                 isInvalid = true;
             }
@@ -153,12 +153,17 @@ public class SurveyServiceImpl implements SurveyService {
                 isInvalid = true;
             }
 
-            else if (!(surveyDTO.isTaxesPaid()==true||surveyDTO.isTaxesPaid()==false)) {
-                System.err.println("Invalid status");
+            else if (surveyDTO.isTaxesPaid()==null) {
+                System.err.println("Invalid status for tax");
                 isInvalid = true;
             }
 
-            else if (surveyDTO.getShareHolding()==null||surveyDTO.getShareHolding().length()<0) {
+            else if (surveyDTO.isDisabled()==null) {
+                System.err.println("Invalid status for disability");
+                isInvalid = true;
+            }
+
+            else if (surveyDTO.getShareHolding()==null||surveyDTO.getShareHolding().length()<4) {
                 System.err.println("Invalid Share Holding entered");
                 isInvalid = true;
             }
@@ -261,20 +266,21 @@ public class SurveyServiceImpl implements SurveyService {
                 isInvalid = true;
             }
 
-            else if (surveyDTO.isGovernmentEmployee()==true||surveyDTO.isGovernmentEmployee()==false) {
-                System.err.println("Invalid data entered");
+            else if (surveyDTO.isGovernmentEmployee()==null) {
+                System.err.println("Invalid data entered for govt emp");
                 isInvalid = true;
             }
             else if (surveyDTO.getOccupation()==null||surveyDTO.getOccupation().length()<3) {
                 System.err.println("Invalid Occupation entered");
                 isInvalid = true;
             }
-            else if (surveyDTO.getEducation()==null||surveyDTO.getEducation().length()<3) {
+            else if(surveyDTO.getEducation()==null||surveyDTO.getEducation().length()<3) {
                 System.err.println("Invalid Education entered");
                 isInvalid = true;
             }
-
-            else{
+            else {
+                System.out.println("All data is valid");
+            }
 
 
             if (isInvalid) {
@@ -282,7 +288,7 @@ public class SurveyServiceImpl implements SurveyService {
             } else {
                 System.out.println("Data is valid");
                 System.out.println(surveyDTO);
-            }
+
             }
         }
     }

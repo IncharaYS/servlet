@@ -201,17 +201,17 @@
 
       <div class="col-md-6">
         <label for="taxesPaid" class="form-label">Are Taxes Paid?:</label>
-        <input type="text" id="taxesPaid" name="taxesPaid" class="form-control" placeholder="Enter if taxes are paid">
+        <input type="text" id="taxesPaid" name="taxesPaid" class="form-control" placeholder="Enter if taxes are paid(Yes/No)">
       </div>
 
       <div class="col-md-6">
         <label for="isDisabled" class="form-label">Are You Disabled?:</label>
-        <input type="text" id="isDisabled" name="isDisabled" class="form-control" placeholder="Enter if you are disabled">
+        <input type="text" id="isDisabled" name="isDisabled" class="form-control" placeholder="Enter if you are disabled(Yes/No)">
       </div>
 
       <div class="col-md-6">
         <label for="isGovernmentEmployee" class="form-label">Are You Govt Emp?:</label>
-        <input type="text" id="isGovernmentEmployee" name="isGovernmentEmployee" class="form-control" placeholder="Enter if you are a government employee">
+        <input type="text" id="isGovernmentEmployee" name="isGovernmentEmployee" class="form-control" placeholder="Enter if you are a government employee(Yes/No)">
       </div>
 
       <div class="col-md-6">

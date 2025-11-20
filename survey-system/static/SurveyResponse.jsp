@@ -15,6 +15,7 @@
   <div class="card shadow-lg p-4 w-100" style="max-width: 900px;">
     <h4 class="mt-4 mb-3 text-center text-success">${successMsg}</h4>
     <h4 class="mt-4 mb-3 text-center text-danger">${failureMsg}</h4>
+    <% if (request.getAttribute("successMsg") != null) { %>
     <h3 class="mt-4 mb-3 ps-4">Submitted details are:</h3>
     <div class="ps-4">
 
@@ -87,12 +88,14 @@
       <p><strong>No. of Cows:</strong> ${noOfCows}</p>
       <p><strong>Pet Name:</strong> ${petName}</p>
       <p><strong>Known Diseases:</strong> ${knownDiseases}</p>
+      <p><strong>Is Disabled:</strong> ${isDisabled}</p>
       <p><strong>Government Employee:</strong> ${isGovernmentEmployee}</p>
       <p><strong>Occupation:</strong> ${occupation}</p>
       <p><strong>Education:</strong> ${education}</p>
+      <% } %>
 
       <div class="mt-4 text-center">
-        <a href="Survey.jsp" class="btn btn-light w-50">Submit Another Response</a>
+        <a href="Survey.jsp" class="btn border-primary rounded btn-light w-50">Submit Another Response</a>
       </div>
 
     </div>

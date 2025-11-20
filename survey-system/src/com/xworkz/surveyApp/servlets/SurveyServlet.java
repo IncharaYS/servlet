@@ -2,8 +2,7 @@ package com.xworkz.surveyApp.servlets;
 
 import com.xworkz.surveyApp.DTO.SurveyDTO;
 import com.xworkz.surveyApp.exceptions.DataInvalidException;
-import com.xworkz.surveyApp.service.SurveyService;
-import com.xworkz.surveyApp.service.SurveyServiceImpl;
+import com.xworkz.surveyApp.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,12 +25,18 @@ public class SurveyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        NumberFormatCheckService numberFormatCheckService=new NumberFormatCheckServiceImpl();
+        ValueCheckService valueCheckService=new ValueCheckServiceImpl();
+
+
+
+
         String name=req.getParameter("name");
-        int age=Integer.parseInt(req.getParameter("age"));
+        int age=numberFormatCheckService.parseIntSafe(req.getParameter("age"));
         String dateOfBirth=req.getParameter("dateOfBirth");
         String bloodGroup=req.getParameter("bloodGroup");
-        double height=Double.parseDouble(req.getParameter("height"));
-        double weight=Double.parseDouble(req.getParameter("weight"));
+        double height=numberFormatCheckService.parseDoubleSafe(req.getParameter("height"));
+        double weight=numberFormatCheckService.parseDoubleSafe(req.getParameter("weight"));
         String complexion=req.getParameter("complexion");
         String motherTongue=req.getParameter("motherTongue");
         String religion=req.getParameter("religion");
@@ -42,13 +47,13 @@ public class SurveyServlet extends HttpServlet {
         String mothersName=req.getParameter("mothersName");
         String maritalStatus=req.getParameter("maritalStatus");
         String spouseName=req.getParameter("spouseName");
-        int noOfChildren=Integer.parseInt(req.getParameter("noOfChildren"));
-        int noOfFamilyMembers=Integer.parseInt(req.getParameter("noOfFamilyMembers"));
+        int noOfChildren= numberFormatCheckService.parseIntSafe(req.getParameter("noOfChildren"));
+        int noOfFamilyMembers=numberFormatCheckService.parseIntSafe(req.getParameter("noOfFamilyMembers"));
         String friendsName=req.getParameter("friendsName");
         String nativePlace=req.getParameter("nativePlace");
 
 
-        long mobileNo=Long.parseLong(req.getParameter("mobileNo"));
+        long mobileNo=numberFormatCheckService.parseLongSafe(req.getParameter("mobileNo"));
         String aadhaarNo=req.getParameter("aadhaarNo");
         String panNo=req.getParameter("panNo");
         String voterId=req.getParameter("voterId");
@@ -57,14 +62,14 @@ public class SurveyServlet extends HttpServlet {
 
 
 
-        double income=Double.parseDouble(req.getParameter("income"));
+        double income=numberFormatCheckService.parseDoubleSafe(req.getParameter("income"));
         String bankAccount=req.getParameter("bankAccount");
         String insuranceCompany=req.getParameter("insuranceCompany");
         String insuranceNo=req.getParameter("insuranceNo");
-        boolean taxesPaid=Boolean.parseBoolean(req.getParameter("taxesPaid"));
+        String taxesPaid=valueCheckService.checkValidTaxesPaidValues(req.getParameter("taxesPaid"));
         String shareHolding=req.getParameter("shareHolding");
-        double landInAcres=Double.parseDouble(req.getParameter("landInAcres"));
-        int totalSites=Integer.parseInt(req.getParameter("totalSites"));
+        double landInAcres=numberFormatCheckService.parseDoubleSafe(req.getParameter("landInAcres"));
+        int totalSites= numberFormatCheckService.parseIntSafe(req.getParameter("totalSites"));
         String rtcNo=req.getParameter("rtcNo");
         String builderOwner=req.getParameter("builderOwner");
         String electricityBillNo=req.getParameter("electricityBillNo");
@@ -73,24 +78,24 @@ public class SurveyServlet extends HttpServlet {
 
         String bikeNo=req.getParameter("bikeNo");
         String carNo=req.getParameter("carNo");
-        int noOfCycles=Integer.parseInt(req.getParameter("noOfCycles"));
-        int shoeSize=Integer.parseInt(req.getParameter("shoeSize"));
-        int noOfShoes=Integer.parseInt(req.getParameter("noOfShoes"));
+        int noOfCycles= numberFormatCheckService.parseIntSafe(req.getParameter("noOfCycles"));
+        int shoeSize= numberFormatCheckService.parseIntSafe(req.getParameter("shoeSize"));
+        int noOfShoes= numberFormatCheckService.parseIntSafe(req.getParameter("noOfShoes"));
         String laptopModel=req.getParameter("laptopModel");
         String tvModel=req.getParameter("tvModel");
 
 
         String crop=req.getParameter("crop");
         String loanNo=req.getParameter("loanNo");
-        double loanBalance=Double.parseDouble(req.getParameter("loanBalance"));
+        double loanBalance=numberFormatCheckService.parseDoubleSafe(req.getParameter("loanBalance"));
         String loanType=req.getParameter("loanType");
-        double goldInGms=Double.parseDouble(req.getParameter("goldInGms"));
-        double silverInGms=Double.parseDouble(req.getParameter("silverInGms"));
-        int noOfCows=Integer.parseInt(req.getParameter("noOfCows"));
+        double goldInGms=numberFormatCheckService.parseDoubleSafe(req.getParameter("goldInGms"));
+        double silverInGms=numberFormatCheckService.parseDoubleSafe(req.getParameter("silverInGms"));
+        int noOfCows= numberFormatCheckService.parseIntSafe(req.getParameter("noOfCows"));
         String petName=req.getParameter("petName");
         String knownDiseases=req.getParameter("knownDiseases");
-        boolean isDisabled=Boolean.parseBoolean(req.getParameter("isDisabled"));
-        boolean isGovernmentEmployee=Boolean.parseBoolean(req.getParameter("isGovernmentEmployee"));
+        String isDisabled=valueCheckService.checkValidIsDisabledValues(req.getParameter("isDisabled"));
+        String isGovernmentEmployee=valueCheckService.checkValidIsGovtEmpValues(req.getParameter("isGovernmentEmployee"));
         String occupation=req.getParameter("occupation");
         String education=req.getParameter("education");
 

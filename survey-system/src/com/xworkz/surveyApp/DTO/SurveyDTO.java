@@ -38,7 +38,7 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
     private String bankAccount;
     private String insuranceCompany;
     private String insuranceNo;
-    private boolean taxesPaid;
+    private String taxesPaid;
     private String shareHolding;
     private double landInAcres;
     private int totalSites;
@@ -67,8 +67,8 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
     private int noOfCows;
     private String petName;
     private String knownDiseases;
-    private boolean isDisabled;
-    private boolean isGovernmentEmployee;
+    private String isDisabled;
+    private String isGovernmentEmployee;
     private String occupation;
     private String education;
 
@@ -106,7 +106,7 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
             String bankAccount,
             String insuranceCompany,
             String insuranceNo,
-            boolean taxesPaid,
+            String taxesPaid,
             String shareHolding,
             double landInAcres,
             int totalSites,
@@ -131,8 +131,8 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
             int noOfCows,
             String petName,
             String knownDiseases,
-            boolean isDisabled,
-            boolean isGovernmentEmployee,
+            String isDisabled,
+            String isGovernmentEmployee,
             String occupation,
             String education
     ){
@@ -359,19 +359,19 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
         this.insuranceNo = insuranceNo;
     }
 
-    public boolean isDisabled() {
+    public String isDisabled() {
         return isDisabled;
     }
 
-    public void setDisabled(boolean disabled) {
+    public void setDisabled(String disabled) {
         isDisabled = disabled;
     }
 
-    public boolean isGovernmentEmployee() {
+    public String isGovernmentEmployee() {
         return isGovernmentEmployee;
     }
 
-    public void setGovernmentEmployee(boolean governmentEmployee) {
+    public void setGovernmentEmployee(String governmentEmployee) {
         isGovernmentEmployee = governmentEmployee;
     }
 
@@ -599,11 +599,11 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
         this.spouseName = spouseName;
     }
 
-    public boolean isTaxesPaid() {
+    public String isTaxesPaid() {
         return taxesPaid;
     }
 
-    public void setTaxesPaid(boolean taxesPaid) {
+    public void setTaxesPaid(String taxesPaid) {
         this.taxesPaid = taxesPaid;
     }
 
@@ -655,7 +655,7 @@ public class SurveyDTO implements Serializable,Comparable<SurveyDTO> {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SurveyDTO surveyDTO = (SurveyDTO) o;
-        return age == surveyDTO.age && Double.compare(height, surveyDTO.height) == 0 && Double.compare(weight, surveyDTO.weight) == 0 && noOfChildren == surveyDTO.noOfChildren && noOfFamilyMembers == surveyDTO.noOfFamilyMembers && mobileNo == surveyDTO.mobileNo && Double.compare(income, surveyDTO.income) == 0 && taxesPaid == surveyDTO.taxesPaid && Double.compare(landInAcres, surveyDTO.landInAcres) == 0 && totalSites == surveyDTO.totalSites && noOfCycles == surveyDTO.noOfCycles && shoeSize == surveyDTO.shoeSize && noOfShoes == surveyDTO.noOfShoes && Double.compare(loanBalance, surveyDTO.loanBalance) == 0 && Double.compare(goldInGms, surveyDTO.goldInGms) == 0 && Double.compare(silverInGms, surveyDTO.silverInGms) == 0 && noOfCows == surveyDTO.noOfCows && isDisabled == surveyDTO.isDisabled && isGovernmentEmployee == surveyDTO.isGovernmentEmployee && Objects.equals(name, surveyDTO.name)&&Objects.equals(bloodGroup, surveyDTO.bloodGroup) && Objects.equals(dateOfBirth, surveyDTO.dateOfBirth) && Objects.equals(complexion, surveyDTO.complexion) && Objects.equals(motherTongue, surveyDTO.motherTongue) && Objects.equals(religion, surveyDTO.religion) && Objects.equals(caste, surveyDTO.caste) && Objects.equals(fathersName, surveyDTO.fathersName) && Objects.equals(mothersName, surveyDTO.mothersName) && Objects.equals(maritalStatus, surveyDTO.maritalStatus) && Objects.equals(spouseName, surveyDTO.spouseName) && Objects.equals(friendsName, surveyDTO.friendsName) && Objects.equals(nativePlace, surveyDTO.nativePlace) && Objects.equals(aadhaarNo, surveyDTO.aadhaarNo) && Objects.equals(panNo, surveyDTO.panNo) && Objects.equals(voterId, surveyDTO.voterId) && Objects.equals(passportNo, surveyDTO.passportNo) && Objects.equals(rationCardNo, surveyDTO.rationCardNo) && Objects.equals(bankAccount, surveyDTO.bankAccount) && Objects.equals(insuranceCompany, surveyDTO.insuranceCompany) && Objects.equals(insuranceNo, surveyDTO.insuranceNo) && Objects.equals(shareHolding, surveyDTO.shareHolding) && Objects.equals(rtcNo, surveyDTO.rtcNo) && Objects.equals(builderOwner, surveyDTO.builderOwner) && Objects.equals(electricityBillNo, surveyDTO.electricityBillNo) && Objects.equals(waterBillNo, surveyDTO.waterBillNo) && Objects.equals(bikeNo, surveyDTO.bikeNo) && Objects.equals(carNo, surveyDTO.carNo) && Objects.equals(laptopModel, surveyDTO.laptopModel) && Objects.equals(tvModel, surveyDTO.tvModel) && Objects.equals(crop, surveyDTO.crop) && Objects.equals(loanNo, surveyDTO.loanNo) && Objects.equals(loanType, surveyDTO.loanType) && Objects.equals(petName, surveyDTO.petName) && Objects.equals(knownDiseases, surveyDTO.knownDiseases) && Objects.equals(occupation, surveyDTO.occupation) && Objects.equals(education, surveyDTO.education);
+        return age == surveyDTO.age && Double.compare(height, surveyDTO.height) == 0 && Double.compare(weight, surveyDTO.weight) == 0 && noOfChildren == surveyDTO.noOfChildren && noOfFamilyMembers == surveyDTO.noOfFamilyMembers && mobileNo == surveyDTO.mobileNo && Double.compare(income, surveyDTO.income) == 0 && Objects.equals(taxesPaid, surveyDTO.taxesPaid) && Double.compare(landInAcres, surveyDTO.landInAcres) == 0 && totalSites == surveyDTO.totalSites && noOfCycles == surveyDTO.noOfCycles && shoeSize == surveyDTO.shoeSize && noOfShoes == surveyDTO.noOfShoes && Double.compare(loanBalance, surveyDTO.loanBalance) == 0 && Double.compare(goldInGms, surveyDTO.goldInGms) == 0 && Double.compare(silverInGms, surveyDTO.silverInGms) == 0 && noOfCows == surveyDTO.noOfCows && Objects.equals(isDisabled, surveyDTO.isDisabled)  && Objects.equals(isGovernmentEmployee, surveyDTO.isGovernmentEmployee) && Objects.equals(name, surveyDTO.name)&&Objects.equals(bloodGroup, surveyDTO.bloodGroup) && Objects.equals(dateOfBirth, surveyDTO.dateOfBirth) && Objects.equals(complexion, surveyDTO.complexion) && Objects.equals(motherTongue, surveyDTO.motherTongue) && Objects.equals(religion, surveyDTO.religion) && Objects.equals(caste, surveyDTO.caste) && Objects.equals(fathersName, surveyDTO.fathersName) && Objects.equals(mothersName, surveyDTO.mothersName) && Objects.equals(maritalStatus, surveyDTO.maritalStatus) && Objects.equals(spouseName, surveyDTO.spouseName) && Objects.equals(friendsName, surveyDTO.friendsName) && Objects.equals(nativePlace, surveyDTO.nativePlace) && Objects.equals(aadhaarNo, surveyDTO.aadhaarNo) && Objects.equals(panNo, surveyDTO.panNo) && Objects.equals(voterId, surveyDTO.voterId) && Objects.equals(passportNo, surveyDTO.passportNo) && Objects.equals(rationCardNo, surveyDTO.rationCardNo) && Objects.equals(bankAccount, surveyDTO.bankAccount) && Objects.equals(insuranceCompany, surveyDTO.insuranceCompany) && Objects.equals(insuranceNo, surveyDTO.insuranceNo) && Objects.equals(shareHolding, surveyDTO.shareHolding) && Objects.equals(rtcNo, surveyDTO.rtcNo) && Objects.equals(builderOwner, surveyDTO.builderOwner) && Objects.equals(electricityBillNo, surveyDTO.electricityBillNo) && Objects.equals(waterBillNo, surveyDTO.waterBillNo) && Objects.equals(bikeNo, surveyDTO.bikeNo) && Objects.equals(carNo, surveyDTO.carNo) && Objects.equals(laptopModel, surveyDTO.laptopModel) && Objects.equals(tvModel, surveyDTO.tvModel) && Objects.equals(crop, surveyDTO.crop) && Objects.equals(loanNo, surveyDTO.loanNo) && Objects.equals(loanType, surveyDTO.loanType) && Objects.equals(petName, surveyDTO.petName) && Objects.equals(knownDiseases, surveyDTO.knownDiseases) && Objects.equals(occupation, surveyDTO.occupation) && Objects.equals(education, surveyDTO.education);
     }
 
     @Override
