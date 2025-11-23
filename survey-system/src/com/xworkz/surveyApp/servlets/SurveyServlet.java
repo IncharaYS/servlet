@@ -3,6 +3,8 @@ package com.xworkz.surveyApp.servlets;
 import com.xworkz.surveyApp.dto.SurveyDTO;
 import com.xworkz.surveyApp.exceptions.DataInvalidException;
 import com.xworkz.surveyApp.service.*;
+import com.xworkz.surveyApp.util.NumberFormatCheck;
+import com.xworkz.surveyApp.util.ValueCheck;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,16 +32,13 @@ public class SurveyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        NumberFormatCheckService numberFormatCheckService=new NumberFormatCheckServiceImpl();
-        ValueCheckService valueCheckService=new ValueCheckServiceImpl();
-
 
         String name=req.getParameter("name");
-        int age=numberFormatCheckService.parseIntSafe(req.getParameter("age"));
+        int age= NumberFormatCheck.parseIntSafe(req.getParameter("age"));
         String dateOfBirth=req.getParameter("dateOfBirth");
         String bloodGroup=req.getParameter("bloodGroup");
-        double height=numberFormatCheckService.parseDoubleSafe(req.getParameter("height"));
-        double weight=numberFormatCheckService.parseDoubleSafe(req.getParameter("weight"));
+        double height=NumberFormatCheck.parseDoubleSafe(req.getParameter("height"));
+        double weight=NumberFormatCheck.parseDoubleSafe(req.getParameter("weight"));
         String complexion=req.getParameter("complexion");
         String motherTongue=req.getParameter("motherTongue");
         String religion=req.getParameter("religion");
@@ -50,13 +49,13 @@ public class SurveyServlet extends HttpServlet {
         String mothersName=req.getParameter("mothersName");
         String maritalStatus=req.getParameter("maritalStatus");
         String spouseName=req.getParameter("spouseName");
-        int noOfChildren= numberFormatCheckService.parseIntSafe(req.getParameter("noOfChildren"));
-        int noOfFamilyMembers=numberFormatCheckService.parseIntSafe(req.getParameter("noOfFamilyMembers"));
+        int noOfChildren=NumberFormatCheck.parseIntSafe(req.getParameter("noOfChildren"));
+        int noOfFamilyMembers=NumberFormatCheck.parseIntSafe(req.getParameter("noOfFamilyMembers"));
         String friendsName=req.getParameter("friendsName");
         String nativePlace=req.getParameter("nativePlace");
 
 
-        long mobileNo=numberFormatCheckService.parseLongSafe(req.getParameter("mobileNo"));
+        long mobileNo=NumberFormatCheck.parseLongSafe(req.getParameter("mobileNo"));
         String aadhaarNo=req.getParameter("aadhaarNo");
         String panNo=req.getParameter("panNo");
         String voterId=req.getParameter("voterId");
@@ -65,14 +64,14 @@ public class SurveyServlet extends HttpServlet {
 
 
 
-        double income=numberFormatCheckService.parseDoubleSafe(req.getParameter("income"));
+        double income=NumberFormatCheck.parseDoubleSafe(req.getParameter("income"));
         String bankAccount=req.getParameter("bankAccount");
         String insuranceCompany=req.getParameter("insuranceCompany");
         String insuranceNo=req.getParameter("insuranceNo");
-        String taxesPaid=valueCheckService.checkValidTaxesPaidValues(req.getParameter("taxesPaid"));
+        String taxesPaid= ValueCheck.checkValidTaxesPaidValues(req.getParameter("taxesPaid"));
         String shareHolding=req.getParameter("shareHolding");
-        double landInAcres=numberFormatCheckService.parseDoubleSafe(req.getParameter("landInAcres"));
-        int totalSites= numberFormatCheckService.parseIntSafe(req.getParameter("totalSites"));
+        double landInAcres=NumberFormatCheck.parseDoubleSafe(req.getParameter("landInAcres"));
+        int totalSites= NumberFormatCheck.parseIntSafe(req.getParameter("totalSites"));
         String rtcNo=req.getParameter("rtcNo");
         String builderOwner=req.getParameter("builderOwner");
         String electricityBillNo=req.getParameter("electricityBillNo");
@@ -81,24 +80,24 @@ public class SurveyServlet extends HttpServlet {
 
         String bikeNo=req.getParameter("bikeNo");
         String carNo=req.getParameter("carNo");
-        int noOfCycles= numberFormatCheckService.parseIntSafe(req.getParameter("noOfCycles"));
-        int shoeSize= numberFormatCheckService.parseIntSafe(req.getParameter("shoeSize"));
-        int noOfShoes= numberFormatCheckService.parseIntSafe(req.getParameter("noOfShoes"));
+        int noOfCycles= NumberFormatCheck.parseIntSafe(req.getParameter("noOfCycles"));
+        int shoeSize= NumberFormatCheck.parseIntSafe(req.getParameter("shoeSize"));
+        int noOfShoes= NumberFormatCheck.parseIntSafe( req.getParameter("noOfShoes"));
         String laptopModel=req.getParameter("laptopModel");
         String tvModel=req.getParameter("tvModel");
 
 
         String crop=req.getParameter("crop");
         String loanNo=req.getParameter("loanNo");
-        double loanBalance=numberFormatCheckService.parseDoubleSafe(req.getParameter("loanBalance"));
+        double loanBalance=NumberFormatCheck.parseDoubleSafe(req.getParameter("loanBalance"));
         String loanType=req.getParameter("loanType");
-        double goldInGms=numberFormatCheckService.parseDoubleSafe(req.getParameter("goldInGms"));
-        double silverInGms=numberFormatCheckService.parseDoubleSafe(req.getParameter("silverInGms"));
-        int noOfCows= numberFormatCheckService.parseIntSafe(req.getParameter("noOfCows"));
+        double goldInGms=NumberFormatCheck.parseDoubleSafe(req.getParameter("goldInGms"));
+        double silverInGms=NumberFormatCheck.parseDoubleSafe(req.getParameter("silverInGms"));
+        int noOfCows= NumberFormatCheck.parseIntSafe(req.getParameter("noOfCows"));
         String petName=req.getParameter("petName");
         String knownDiseases=req.getParameter("knownDiseases");
-        String isDisabled=valueCheckService.checkValidIsDisabledValues(req.getParameter("isDisabled"));
-        String isGovernmentEmployee=valueCheckService.checkValidIsGovtEmpValues(req.getParameter("isGovernmentEmployee"));
+        String isDisabled=ValueCheck.checkValidIsDisabledValues(req.getParameter("isDisabled"));
+        String isGovernmentEmployee=ValueCheck.checkValidIsGovtEmpValues(req.getParameter("isGovernmentEmployee"));
         String occupation=req.getParameter("occupation");
         String education=req.getParameter("education");
 

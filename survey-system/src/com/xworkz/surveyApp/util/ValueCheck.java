@@ -1,8 +1,7 @@
-package com.xworkz.surveyApp.service;
+package com.xworkz.surveyApp.util;
 
-public class ValueCheckServiceImpl implements ValueCheckService{
-    @Override
-    public String checkValidTaxesPaidValues(String name) {
+public class ValueCheck {
+    public static String checkValidTaxesPaidValues(String name) {
         String[] validValues={"yes","no","True","false"};
         for (String values:validValues){
             if(name.equalsIgnoreCase(values)){
@@ -12,8 +11,7 @@ public class ValueCheckServiceImpl implements ValueCheckService{
         return null;
     }
 
-    @Override
-    public String checkValidIsDisabledValues(String name) {
+    public static String checkValidIsDisabledValues(String name) {
         String[] validValues={"yes","no","True","false"};
         for (String values:validValues){
             if(name.equalsIgnoreCase(values)){
@@ -23,8 +21,7 @@ public class ValueCheckServiceImpl implements ValueCheckService{
         return null;
     }
 
-    @Override
-    public String checkValidIsGovtEmpValues(String name) {
+    public static String checkValidIsGovtEmpValues(String name) {
         String[] validValues={"yes","no","True","false"};
         for (String values:validValues){
             if(name.equalsIgnoreCase(values)){
