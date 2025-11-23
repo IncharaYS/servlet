@@ -1,4 +1,4 @@
-package com.xworkz.surveyApp.DTO;
+package com.xworkz.surveyApp.dto;
 
 import java.io.Serializable;
 import java.util.Objects;

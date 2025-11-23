@@ -1,6 +1,6 @@
 package com.xworkz.surveyApp.servlets;
 
-import com.xworkz.surveyApp.DTO.SurveyDTO;
+import com.xworkz.surveyApp.dto.SurveyDTO;
 import com.xworkz.surveyApp.exceptions.DataInvalidException;
 import com.xworkz.surveyApp.service.*;
 
@@ -22,13 +22,16 @@ public class SurveyServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("Survey.jsp").forward(req,resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
         NumberFormatCheckService numberFormatCheckService=new NumberFormatCheckServiceImpl();
         ValueCheckService valueCheckService=new ValueCheckServiceImpl();
-
-
 
 
         String name=req.getParameter("name");

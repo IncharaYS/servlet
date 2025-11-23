@@ -15,6 +15,7 @@
   <div class="card shadow-lg p-4 w-100" style="max-width: 900px;">
     <h4 class="mt-4 mb-3 text-center text-success">${successMsg}</h4>
     <h4 class="mt-4 mb-3 text-center text-danger">${failureMsg}</h4>
+
     <% if (request.getAttribute("successMsg") != null) { %>
     <h3 class="mt-4 mb-3 ps-4">Submitted details are:</h3>
     <div class="ps-4">

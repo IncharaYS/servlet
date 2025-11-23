@@ -36,18 +36,18 @@
 
   <div class="mb-3">
     <label class="form-label" for="cafeteriaName">Cafeteria Name:</label>
-    <input type="text" id="cafeteriaName" class="form-control" name="cafeteriaName" required>
+    <input type="text" id="cafeteriaName" class="form-control" name="cafeteriaName" phaseholder="Enter cafeteria name" required>
   </div>
 
   <div class="mb-3">
     <label class="form-label" for="location">Location:</label>
-    <input type="text" id="location" class="form-control" name="location" required>
+    <input type="text" id="location" class="form-control" name="location" phaseholder="Enter location" required>
   </div>
 
 
   <div class="mb-3">
     <label class="form-label" for="franchiseName">Franchise Name:</label>
-    <input type="text" id="franchiseName" class="form-control" name="franchiseName" required>
+    <input type="text" id="franchiseName" class="form-control" name="franchiseName" phaseholder="Enter franchise name" required>
   </div>
 
   <div class="mb-3">
