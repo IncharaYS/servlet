@@ -16,6 +16,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/survey", loadOnStartup = 1)
 public class SurveyServlet extends HttpServlet {
 
+    SurveyService surveyService = new SurveyServiceImpl();
 
 
 
@@ -121,7 +122,7 @@ public class SurveyServlet extends HttpServlet {
 
         System.out.println(surveyDTO);
 
-        SurveyService surveyService = new SurveyServiceImpl();
+
 
         try {
             surveyService.validateData(surveyDTO);
