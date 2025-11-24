@@ -240,8 +240,8 @@
       </div>
 
       <div class="col-md-6">
-        <label for="builderOwner" class="form-label">Building Owner Name:</label>
-        <input type="text" id="builderOwner" name="builderOwner" class="form-control" placeholder="Enter building owner name">
+        <label for="buildingOwner" class="form-label">Building Owner Name:</label>
+        <input type="text" id="buildingOwner" name="buildingOwner" class="form-control" placeholder="Enter building owner name">
       </div>
 
       <div class="col-md-6">

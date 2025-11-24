@@ -1,6 +1,6 @@
 package com.xworkz.surveyApp.servlets;
 
-import com.xworkz.surveyApp.dto.SurveyDTO;
+import com.xworkz.surveyApp.dto.*;
 import com.xworkz.surveyApp.exceptions.DataInvalidException;
 import com.xworkz.surveyApp.service.*;
 import com.xworkz.surveyApp.util.NumberFormatCheck;
@@ -44,6 +44,8 @@ public class SurveyServlet extends HttpServlet {
         String religion=req.getParameter("religion");
         String caste=req.getParameter("caste");
 
+        PersonalDetailsDTO personalDetailsDTO=new PersonalDetailsDTO(name,age,dateOfBirth,bloodGroup,height,weight, complexion,motherTongue,religion,caste);
+
 
         String fathersName=req.getParameter("fathersName");
         String mothersName=req.getParameter("mothersName");
@@ -54,6 +56,8 @@ public class SurveyServlet extends HttpServlet {
         String friendsName=req.getParameter("friendsName");
         String nativePlace=req.getParameter("nativePlace");
 
+        FamilyDetailsDTO familyDetailsDTO=new FamilyDetailsDTO( fathersName,mothersName,maritalStatus,spouseName, noOfChildren,noOfFamilyMembers,friendsName,nativePlace);
+
 
         long mobileNo=NumberFormatCheck.parseLongSafe(req.getParameter("mobileNo"));
         String aadhaarNo=req.getParameter("aadhaarNo");
@@ -62,7 +66,7 @@ public class SurveyServlet extends HttpServlet {
         String passportNo=req.getParameter("passportNo");
         String rationCardNo= req.getParameter("rationCardNo");
 
-
+        ContactDetailsDTO contactDetailsDTO=new ContactDetailsDTO(mobileNo,aadhaarNo,panNo,voterId,passportNo,rationCardNo);
 
         double income=NumberFormatCheck.parseDoubleSafe(req.getParameter("income"));
         String bankAccount=req.getParameter("bankAccount");
@@ -73,9 +77,11 @@ public class SurveyServlet extends HttpServlet {
         double landInAcres=NumberFormatCheck.parseDoubleSafe(req.getParameter("landInAcres"));
         int totalSites= NumberFormatCheck.parseIntSafe(req.getParameter("totalSites"));
         String rtcNo=req.getParameter("rtcNo");
-        String builderOwner=req.getParameter("builderOwner");
+        String buildingOwner =req.getParameter("buildingOwner");
         String electricityBillNo=req.getParameter("electricityBillNo");
         String waterBillNo=req.getParameter("waterBillNo");
+
+        FinanceDetailsDTO financeDetailsDTO=new FinanceDetailsDTO(income,bankAccount,insuranceCompany,insuranceNo,taxesPaid, shareHolding,landInAcres,totalSites,rtcNo, buildingOwner, electricityBillNo,waterBillNo);
 
 
         String bikeNo=req.getParameter("bikeNo");
@@ -85,6 +91,8 @@ public class SurveyServlet extends HttpServlet {
         int noOfShoes= NumberFormatCheck.parseIntSafe( req.getParameter("noOfShoes"));
         String laptopModel=req.getParameter("laptopModel");
         String tvModel=req.getParameter("tvModel");
+
+        VehiclesAndAppliancesDTO vehiclesAndAppliancesDTO=new VehiclesAndAppliancesDTO(bikeNo,carNo,noOfCycles,shoeSize,noOfShoes, laptopModel,tvModel);
 
 
         String crop=req.getParameter("crop");
@@ -101,13 +109,15 @@ public class SurveyServlet extends HttpServlet {
         String occupation=req.getParameter("occupation");
         String education=req.getParameter("education");
 
+        LoansAndAssetsDetailsDTO loansAndAssetsDetailsDTO=new LoansAndAssetsDetailsDTO(crop,loanNo,loanBalance,loanType,goldInGms,silverInGms, noOfCows,petName,knownDiseases,isDisabled,isGovernmentEmployee, occupation,education);
 
 
+//       SurveyDTO surveyDTO = new SurveyDTO(name,age,dateOfBirth,bloodGroup,height,weight, complexion,motherTongue,religion,caste, fathersName,mothersName,maritalStatus,spouseName, noOfChildren,noOfFamilyMembers,friendsName,nativePlace,
+//               mobileNo,aadhaarNo,panNo,voterId,passportNo,rationCardNo, income,bankAccount,insuranceCompany,insuranceNo,taxesPaid, shareHolding,landInAcres,totalSites,rtcNo,buildingOwner, electricityBillNo,waterBillNo,
+//               bikeNo,carNo,noOfCycles,shoeSize,noOfShoes, laptopModel,tvModel, crop,loanNo,loanBalance,loanType,goldInGms,silverInGms, noOfCows,petName,knownDiseases,isDisabled,isGovernmentEmployee, occupation,education);
 
-        SurveyDTO surveyDTO = new SurveyDTO(name,age,dateOfBirth,bloodGroup,height,weight, complexion,motherTongue,religion,caste, fathersName,mothersName,maritalStatus,spouseName, noOfChildren,noOfFamilyMembers,friendsName,nativePlace,
-                mobileNo,aadhaarNo,panNo,voterId,passportNo,rationCardNo, income,bankAccount,insuranceCompany,insuranceNo,taxesPaid, shareHolding,landInAcres,totalSites,rtcNo,builderOwner, electricityBillNo,waterBillNo,
-                bikeNo,carNo,noOfCycles,shoeSize,noOfShoes, laptopModel,tvModel, crop,loanNo,loanBalance,loanType,goldInGms,silverInGms, noOfCows,petName,knownDiseases,isDisabled,isGovernmentEmployee, occupation,education);
-
+        
+        SurveyDTO surveyDTO=new SurveyDTO(personalDetailsDTO,familyDetailsDTO,contactDetailsDTO,financeDetailsDTO,vehiclesAndAppliancesDTO,loansAndAssetsDetailsDTO);
 
         System.out.println(surveyDTO);
 
@@ -156,7 +166,7 @@ public class SurveyServlet extends HttpServlet {
             req.setAttribute("landInAcres",landInAcres);
             req.setAttribute("totalSites",totalSites);
             req.setAttribute("rtcNo",rtcNo);
-            req.setAttribute("builderOwner",builderOwner);
+            req.setAttribute("buildingOwner", buildingOwner);
             req.setAttribute("electricityBillNo",electricityBillNo);
             req.setAttribute("waterBillNo",waterBillNo);
 
@@ -179,7 +189,7 @@ public class SurveyServlet extends HttpServlet {
             req.setAttribute("petName",petName);
             req.setAttribute("knownDiseases",knownDiseases);
             req.setAttribute("isDisabled",isDisabled);
-            req.setAttribute("isGovernmentEmployee",surveyDTO.isGovernmentEmployee());
+            req.setAttribute("isGovernmentEmployee",isGovernmentEmployee);
             req.setAttribute("occupation",occupation);
             req.setAttribute("education",education);
 

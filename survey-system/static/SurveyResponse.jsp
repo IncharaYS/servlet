@@ -64,7 +64,7 @@
       <p><strong>Land in Acres:</strong> ${landInAcres}</p>
       <p><strong>Total Sites:</strong> ${totalSites}</p>
       <p><strong>RTC No:</strong> ${rtcNo}</p>
-      <p><strong>Builder / Owner:</strong> ${builderOwner}</p>
+      <p><strong>Builder / Owner:</strong> ${buildingOwner}</p>
       <p><strong>Electricity Bill No:</strong> ${electricityBillNo}</p>
       <p><strong>Water Bill No:</strong> ${waterBillNo}</p>
 
