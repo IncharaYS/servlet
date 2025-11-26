@@ -45,8 +45,8 @@ function onGenderSelect() {
 
     genderMsg.style.display = "block";
     genderMsg.textContent = gender.value === "male"
-        ? "Enter Groom details"
-        : "Enter Bride details";
+        ? "Enter Groom details:"
+        : "Enter Bride details:";
 
     document.getElementById("otherFields").style.display = "block";
 }
@@ -70,5 +70,37 @@ function validateHeight(input) {
 
     input.reportValidity();
 }
+
+function validateForm() {
+    let requiredFields=[
+        {id:"email",name:"Email" },
+        {id:"for",name:"Profile For" },
+        {id:"dob",name:"Date of Birth" },
+        {id:"motherTongue",name:"Mother Tongue" },
+        {id:"religion",name:"Religion" },
+        {id:"maritalStatus",name:"Marital Status" },
+        {id:"height",name:"Height" }
+    ];
+
+    for (let field of requiredFields) {
+        let input=document.getElementById(field.id);
+        if (!input||input.value.trim()==="") {
+            alert(field.name+" cannot be empty");
+            input.focus();
+            return false;
+        }
+    }
+
+    let male = document.getElementById("male").checked;
+    let female = document.getElementById("female").checked;
+
+    if (!male && !female) {
+        alert("Please select Gender!");
+        return false;
+    }
+
+    return true;
+}
+
 
 

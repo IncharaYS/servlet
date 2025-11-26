@@ -26,11 +26,11 @@
         .card h5 {
             color: #b30000;
         }
-        .btn-primary {
+        .btn-danger {
             background-color: #800000;
             border-color: #800000;
         }
-        .btn-primary:hover {
+        .btn-danger:hover {
             background-color: #b30000;
             border-color: #b30000;
         }
@@ -55,7 +55,7 @@
     <div class="card shadow-lg rounded-4 p-4 text-center w-75" style="max-width: 600px; background-color:#fff0f0;">
         <h1 class="mb-4">Welcome to Matrimony App</h1>
         <h5 class="mb-4">Click the button below to register</h5>
-        <a href="matrimony" class="btn btn-primary btn-lg px-5 py-3 rounded-3">
+        <a href="matrimony" class="btn btn-danger btn-lg px-5 py-3 rounded-3">
             Register Now
         </a>
     </div>

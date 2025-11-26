@@ -56,9 +56,10 @@
   <div class="card shadow-lg rounded-4 p-4 bg-white">
     <h3 class="mb-4 text-center">Matrimony Registration</h3>
 
-    <form action="matrimony" method="post">
+    <form action="matrimony" method="post" onsubmit="return validateForm()">
 
-      <div class="mb-3">
+
+    <div class="mb-3">
         <label for="email" class="form-label fw-bold">Email:</label>
         <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email" required
                oninput="validateEmail(this)">
@@ -89,6 +90,10 @@
         </div>
         <div id="genderMsg" class="fw-medium mt-2" style="display:none;"></div>
       </div>
+
+
+
+
 
       <div id="otherFields" style="display:none;">
 

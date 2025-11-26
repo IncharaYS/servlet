@@ -4,6 +4,7 @@ import com.xworkz.matrimonyapp.dto.MatrimonyDTO;
 import com.xworkz.matrimonyapp.exceptions.DataInvalidException;
 import com.xworkz.matrimonyapp.service.MatrimonyService;
 import com.xworkz.matrimonyapp.service.MatrimonyServiceImpl;
+import com.xworkz.matrimonyapp.util.NumberFormatCheck;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,10 +39,11 @@ public class MatrimonyServlet extends HttpServlet {
         String motherTongue=req.getParameter("motherTongue");
         String religion=req.getParameter("religion");
         String maritalStatus=req.getParameter("maritalStatus");
-        Double height=Double.parseDouble(req.getParameter("height"));
+        double height= NumberFormatCheck.parseDoubleSafe(req.getParameter("height"));
 
         MatrimonyDTO matrimonyDTO=new MatrimonyDTO(email,createProfileFor,gender,dateOfBirth,motherTongue,religion,maritalStatus,height);
 
+        System.out.println(matrimonyDTO);
         try {
 
             matrimonyService.validateData(matrimonyDTO);
@@ -61,7 +63,7 @@ public class MatrimonyServlet extends HttpServlet {
             System.err.println("Invalid data entered");
             req.setAttribute("failureMsg","Entered data is invalid");
         }
-
+        System.out.println(matrimonyDTO);
 
         req.getRequestDispatcher("MatrimonyResponse.jsp").forward(req,resp);
 
