@@ -17,7 +17,7 @@ public class MatrimonyServiceImpl implements MatrimonyService{
                 isInvalid=true;
             }
 
-            else if(matrimonyDTO.getCreateProfileFor()==null||matrimonyDTO.getCreateProfileFor().length()<4){
+            else if(matrimonyDTO.getCreateProfileFor()==null||matrimonyDTO.getCreateProfileFor().length()<2){
                 System.err.println("Invalid for entered");
                 isInvalid=true;
             }

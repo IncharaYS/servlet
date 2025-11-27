@@ -61,14 +61,14 @@
 
     <div class="mb-3">
         <label for="email" class="form-label fw-bold">Email:</label>
-        <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email" required
+        <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email"
                oninput="validateEmail(this)">
-        <small id="emailMsg" style="color:red"></small>
+        <small id="emailMsg" class="text-danger"></small>
       </div>
 
       <div class="mb-3">
         <label for="for" class="form-label fw-bold">Create Profile For:</label>
-        <select id="for" class="form-select" name="for" required>
+        <select id="for" class="form-select" name="for" >
           <option value="">--Select--</option>
           <option value="Myself">Myself</option>
           <option value="Son">Son</option>
@@ -81,7 +81,7 @@
       <div class="mb-3">
         <label class="form-label fw-bold">Gender:</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender" value="male" id="male" onclick="onGenderSelect()" required>
+          <input class="form-check-input" type="radio" name="gender" value="male" id="male" onclick="onGenderSelect()" >
           <label class="form-check-label" for="male">Male</label>
         </div>
         <div class="form-check">
@@ -99,12 +99,12 @@
 
         <div class="mb-3">
           <label for="dob" class="form-label fw-bold">Date of Birth:</label>
-          <input type="date" id="dob" name="dob" class="form-control" required>
+          <input type="date" id="dob" name="dob" class="form-control" >
         </div>
 
         <div class="mb-3">
           <label for="motherTongue" class="form-label fw-bold">Mother Tongue:</label>
-          <select id="motherTongue" name="motherTongue" class="form-select" required>
+          <select id="motherTongue" name="motherTongue" class="form-select" >
             <option value="">--Select--</option>
             <option value="Kannada">Kannada</option>
             <option value="Telugu">Telugu</option>
@@ -117,7 +117,7 @@
 
         <div class="mb-3">
           <label for="religion" class="form-label fw-bold">Religion:</label>
-          <select id="religion" name="religion" class="form-select" required>
+          <select id="religion" name="religion" class="form-select" >
             <option value="">--Select--</option>
             <option value="Hindu">Hindu</option>
             <option value="Christian">Christian</option>
@@ -131,7 +131,7 @@
 
         <div class="mb-3">
           <label for="maritalStatus" class="form-label fw-bold">Marital Status:</label>
-          <select id="maritalStatus" name="maritalStatus" class="form-select" required>
+          <select id="maritalStatus" name="maritalStatus" class="form-select" >
             <option value="">--Select--</option>
             <option value="Never Married">Never Married</option>
             <option value="Divorced">Divorced</option>
@@ -143,7 +143,7 @@
         <div class="mb-3">
           <label for="height" class="form-label fw-bold">Height (in feet):</label>
           <input type="number" id="height" name="height" class="form-control" placeholder="Enter your Height"
-                 min="1" max="7" step="0.1" required oninput="validateHeight(this)">
+                 min="1" max="7" step="0.1"  oninput="validateHeight(this)">
           <small id="heightMsg" style="color:red"></small>
         </div>
 

@@ -5,7 +5,7 @@ function validateEmail() {
     const pattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (email === "") {
-        msg.textContent = "Email is required.";
+        msg.textContent="Email is required.";
         input.setCustomValidity("Invalid");
         input.reportValidity();
 
