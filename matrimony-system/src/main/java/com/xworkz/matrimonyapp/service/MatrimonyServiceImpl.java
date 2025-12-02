@@ -2,13 +2,19 @@ package com.xworkz.matrimonyapp.service;
 
 import com.xworkz.matrimonyapp.dto.MatrimonyDTO;
 import com.xworkz.matrimonyapp.exceptions.DataInvalidException;
+import com.xworkz.matrimonyapp.exceptions.DataNotSavedException;
+import com.xworkz.matrimonyapp.repository.MatrimonyRepository;
+import com.xworkz.matrimonyapp.repository.MatrimonyRepositoryImpl;
 
 
 public class MatrimonyServiceImpl implements MatrimonyService{
 
+
+    MatrimonyRepository matrimonyRepository = new MatrimonyRepositoryImpl();
+
+
     @Override
     public void validateData(MatrimonyDTO matrimonyDTO) throws DataInvalidException {
-
 
         boolean isInvalid=false;
         if (matrimonyDTO!=null){
@@ -57,10 +63,21 @@ public class MatrimonyServiceImpl implements MatrimonyService{
             }
 
 
+
             if (isInvalid) {
                 throw new DataInvalidException("Data must be valid");
-            } else {
-                System.out.println("Data is valid");
+            }
+
+
+            else {
+                boolean isSaved=matrimonyRepository.save(matrimonyDTO);
+
+                if(isSaved) System.out.println("Data saved successfully");
+                else {
+                    System.err.println("Failed to save data");
+                    throw  new DataNotSavedException("Failed to save data");
+                }
+
             }
         }
     }

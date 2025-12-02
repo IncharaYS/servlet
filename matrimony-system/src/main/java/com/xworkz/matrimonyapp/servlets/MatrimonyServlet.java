@@ -2,6 +2,8 @@ package com.xworkz.matrimonyapp.servlets;
 
 import com.xworkz.matrimonyapp.dto.MatrimonyDTO;
 import com.xworkz.matrimonyapp.exceptions.DataInvalidException;
+import com.xworkz.matrimonyapp.exceptions.DataNotSavedException;
+import com.xworkz.matrimonyapp.exceptions.DuplicateEmailException;
 import com.xworkz.matrimonyapp.service.MatrimonyService;
 import com.xworkz.matrimonyapp.service.MatrimonyServiceImpl;
 import com.xworkz.matrimonyapp.util.NumberFormatCheck;
@@ -63,7 +65,18 @@ public class MatrimonyServlet extends HttpServlet {
             System.err.println("Invalid data entered");
             req.setAttribute("failureMsg","Entered data is invalid");
         }
+        catch (DataNotSavedException dnse){
+            System.err.println("Data not saved successfully");
+            req.setAttribute("failureMsg","Entered data is not saved");
+        }
+        catch (DuplicateEmailException dee){
+            System.err.println("Data not saved successfully as email is duplicate value");
+            req.setAttribute("failureMsg","Entered email is already registered");
+        }
+
         System.out.println(matrimonyDTO);
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         req.getRequestDispatcher("MatrimonyResponse.jsp").forward(req,resp);
 
