@@ -48,10 +48,10 @@ public class MatrimonyServlet extends HttpServlet {
         System.out.println(matrimonyDTO);
         try {
 
-            matrimonyService.validateData(matrimonyDTO);
+            matrimonyService.validateAndSaveData(matrimonyDTO);
 
             req.setAttribute("successMsg","Data Saved Successfully");
-            req.setAttribute("email", email);
+      /*      req.setAttribute("email", email);
             req.setAttribute("createProfileFor", createProfileFor);
             req.setAttribute("gender", gender);
             req.setAttribute("motherTongue", motherTongue);
@@ -59,7 +59,8 @@ public class MatrimonyServlet extends HttpServlet {
             req.setAttribute("religion", religion);
             req.setAttribute("maritalStatus", maritalStatus);
             req.setAttribute("height", height);
-
+      */
+            req.setAttribute("dto",matrimonyDTO);
         }
         catch(DataInvalidException die){
             System.err.println("Invalid data entered");
@@ -76,9 +77,10 @@ public class MatrimonyServlet extends HttpServlet {
 
         System.out.println(matrimonyDTO);
 
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         req.getRequestDispatcher("MatrimonyResponse.jsp").forward(req,resp);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
     }
+
 }

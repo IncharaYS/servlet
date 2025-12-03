@@ -65,14 +65,14 @@
     <hr>
 
     <div class="ps-3">
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Created Profile for:</strong> ${createProfileFor}</p>
-      <p><strong>Gender:</strong> ${gender}</p>
-      <p><strong>Date of birth:</strong> ${dateOfBirth}</p>
-      <p><strong>Mother tongue:</strong> ${motherTongue}</p>
-      <p><strong>Religion:</strong> ${religion}</p>
-      <p><strong>Marital status:</strong> ${maritalStatus}</p>
-      <p><strong>Height:</strong> ${height}</p>
+      <p><strong>Email:</strong> ${dto.email}</p>
+      <p><strong>Created Profile for:</strong> ${dto.createProfileFor}</p>
+      <p><strong>Gender:</strong> ${dto.gender}</p>
+      <p><strong>Date of birth:</strong> ${dto.dateOfBirth}</p>
+      <p><strong>Mother tongue:</strong> ${dto.motherTongue}</p>
+      <p><strong>Religion:</strong> ${dto.religion}</p>
+      <p><strong>Marital status:</strong> ${dto.maritalStatus}</p>
+      <p><strong>Height:</strong> ${dto.height}</p>
     </div>
     <% } %>
 

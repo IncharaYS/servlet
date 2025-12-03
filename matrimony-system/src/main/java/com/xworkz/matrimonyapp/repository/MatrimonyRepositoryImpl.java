@@ -53,10 +53,10 @@ public class MatrimonyRepositoryImpl implements MatrimonyRepository {
 
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-
+            return isSaved;
         }
 
-        return isSaved;
+        return  isSaved;
     }
 
 }

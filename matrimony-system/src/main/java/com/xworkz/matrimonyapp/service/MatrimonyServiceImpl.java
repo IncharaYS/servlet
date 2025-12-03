@@ -14,7 +14,7 @@ public class MatrimonyServiceImpl implements MatrimonyService{
 
 
     @Override
-    public void validateData(MatrimonyDTO matrimonyDTO) throws DataInvalidException {
+    public void validateAndSaveData(MatrimonyDTO matrimonyDTO) throws DataInvalidException {
 
         boolean isInvalid=false;
         if (matrimonyDTO!=null){
