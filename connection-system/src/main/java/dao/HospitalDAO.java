@@ -1,9 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class HospitalDAO {
     public static void main(String[] args) {
@@ -98,21 +95,44 @@ public class HospitalDAO {
 
 
             Statement statement1=connection.createStatement();
-            int noOfRowsAffected1=statement1.executeUpdate(insertQuery);
-            System.out.println("Number of rows affected:"+noOfRowsAffected1);
+//            PreparedStatement preparedStatement = connection.prepareStatement("");
+//            int noOfRowsAffected1=statement1.executeUpdate(insertQuery);
+//            System.out.println("Number of rows affected:"+noOfRowsAffected1);
 
 
-            String update1="update hospital set email='govt@gmail.com' where owner_name='Govt'";
+            String update1="update hospital set email='govt@gmail.com' where owner_name='Govt B'";
+
+//            String update1="update hospital set email='govt@gmail.com' where owner_name='Govt A'";
+
+            String update2="update hospital set email = ? where owner_name = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(update2);
+            preparedStatement.setString(1,"apollo1@MBBS.com");
+            preparedStatement.setString(2,"Nair");
+            int row1 = preparedStatement.executeUpdate();
+
+////            PreparedStatement preparedStatement = connection.prepareStatement(update2);
+//            preparedStatement.setString(1,"apollo1@MBBS MS.com");
+//            preparedStatement.setString(2,"Shetty");
+//            int row2 = preparedStatement.executeUpdate();
+
+
+            System.out.println("Number of row1 affected:"+row1);
+//            System.out.println("Number of row3 affected:"+row2);
+
+
+
+
+
 
             Statement statement2=connection.createStatement();
             int noOfRowsAffected2=statement2.executeUpdate(update1);
             System.out.println("Number of rows affected:"+noOfRowsAffected2);
 
-            String update2="update hospital set no_of_doctors=no_of_doctors+18 where owner_name='Govt'";
+//            String update2="update hospital set no_of_doctors=no_of_doctors+18 where owner_name='Govt'";
 
             Statement statement3=connection.createStatement();
-            int noOfRowsAffected3=statement3.executeUpdate(update2);
-            System.out.println("Number of rows affected:"+noOfRowsAffected3);
+//            int noOfRowsAffected3=statement3.executeUpdate(update2);
+//            System.out.println("Number of rows affected:"+noOfRowsAffected3);
 
             String update3="update hospital set capacity=capacity*1.15 where capacity<200";
 

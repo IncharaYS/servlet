@@ -7,11 +7,11 @@ function validateEmail() {
     if (email === "") {
         msg.textContent="Email is required.";
 
-    } else if (!pattern.test(email)) {
+    } else if (pattern.test(email)) {
+        msg.textContent="";
+    } else {
         msg.textContent="Entered email is not valid.";
 
-    } else {
-        msg.textContent="";
     }
 }
 
@@ -21,14 +21,14 @@ function validatePhoneNo(){
     const msg=document.getElementById("phoneNoMsg");
     const phoneNo=input.value.trim();
 
-    const pattern = /^\+?[0-9]{10,15}$/;
+    const pattern = /^\+?\d{10,15}$/;
 
         if (phoneNo === "") {
             msg.textContent = "Phone number is required.";
-        } else if (!pattern.test(phoneNo)) {
-            msg.textContent = "Enter a valid phone number";
-        } else {
+        } else if (pattern.test(phoneNo)) {
             msg.textContent = "";
+        } else {
+            msg.textContent = "Enter a valid phone number";
         }
 
 }
@@ -43,11 +43,11 @@ function validatePassword() {
     if (password === "") {
         msg.textContent = "Password is required.";
     }
-    else if (!pattern.test(password)) {
-        msg.textContent = "Password must be 8 chars,include uppercase,lowercase,number & special character.";
+    else if (pattern.test(password)) {
+        msg.textContent = "";
     }
     else {
-        msg.textContent = "";
+        msg.textContent = "Password must be 8 chars,include uppercase,lowercase,number & special character.";
     }
 }
 

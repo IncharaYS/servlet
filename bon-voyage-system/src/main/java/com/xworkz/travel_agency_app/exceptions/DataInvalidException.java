@@ -1,4 +1,4 @@
-package com.xworkz.travelAgencyApp.exceptions;
+package com.xworkz.travel_agency_app.exceptions;
 
 public class DataInvalidException extends RuntimeException {
     public DataInvalidException(String message) {

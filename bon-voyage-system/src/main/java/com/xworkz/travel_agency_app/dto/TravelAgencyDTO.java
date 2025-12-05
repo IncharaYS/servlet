@@ -1,4 +1,4 @@
-package com.xworkz.travelAgencyApp.dto;
+package com.xworkz.travel_agency_app.dto;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -42,6 +42,10 @@
     </div>
     <% } %>
 
+    <div class="mt-4 text-center">
+      <a href="TravelAgency.jsp" class="btn border-primary rounded btn-primary w-50">Submit Another Response</a>
+    </div>
+
   </div>
 </div>
 

@@ -1,0 +1,80 @@
+package com.xworkz.travel_agency_app.repository;
+
+import com.xworkz.travel_agency_app.constants.DbConstants;
+import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
+import com.xworkz.travel_agency_app.exceptions.DuplicateEmailException;
+import lombok.SneakyThrows;
+
+import java.sql.*;
+
+public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
+    @Override
+    public boolean save(TravelAgencyDTO travelAgencyDTO) {
+        boolean isSaved = false;
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println("Driver not loaded ");
+        }
+
+        String insertQuery = "insert into user_info(full_name,email,password,phone_no,country) values(?,?,?,?,?);";
+        try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)){
+
+
+                preparedStatement.setString(1, travelAgencyDTO.getFullName());
+                preparedStatement.setString(2, travelAgencyDTO.getEmail());
+                preparedStatement.setString(3, travelAgencyDTO.getPassword());
+                preparedStatement.setLong(4, travelAgencyDTO.getPhoneNo());
+                preparedStatement.setString(5, travelAgencyDTO.getCountry());
+
+
+                int rows = preparedStatement.executeUpdate();
+                System.out.println("Successfully inserted no of rows:" + rows);
+
+
+            isSaved = true;
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return isSaved;
+        }
+
+        return  isSaved;
+    }
+
+
+
+
+    @Override
+    @SneakyThrows
+    public boolean checkDuplicateEmail(String email) {
+        boolean isDuplicate = false;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver not loaded ");
+        }
+
+        String emailCheckQuery = "select 1 from user_info where email=?";
+        try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
+                PreparedStatement checkStatement = connection.prepareStatement(emailCheckQuery)) {
+
+
+                checkStatement.setString(1,email);
+
+                try (ResultSet dupEmail = checkStatement.executeQuery()) {
+
+                    if (dupEmail.next()) {
+                        isDuplicate=true;
+                        throw new DuplicateEmailException("Entered email is already registered");
+                    }
+                }
+            }
+            return isDuplicate;
+    }
+}
+
+

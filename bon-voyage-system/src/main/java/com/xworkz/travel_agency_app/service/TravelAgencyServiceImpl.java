@@ -1,10 +1,10 @@
-package com.xworkz.travelAgencyApp.service;
+package com.xworkz.travel_agency_app.service;
 
-import com.xworkz.travelAgencyApp.dto.TravelAgencyDTO;
-import com.xworkz.travelAgencyApp.exceptions.DataInvalidException;
-import com.xworkz.travelAgencyApp.exceptions.DataNotSavedException;
-import com.xworkz.travelAgencyApp.repository.TravelAgencyRepository;
-import com.xworkz.travelAgencyApp.repository.TravelAgencyRepositoryImpl;
+import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
+import com.xworkz.travel_agency_app.exceptions.DataInvalidException;
+import com.xworkz.travel_agency_app.exceptions.DataNotSavedException;
+import com.xworkz.travel_agency_app.repository.TravelAgencyRepository;
+import com.xworkz.travel_agency_app.repository.TravelAgencyRepositoryImpl;
 
 public class TravelAgencyServiceImpl implements TravelAgencyService {
 
@@ -55,17 +55,17 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
             }
 
             else {
-                boolean isSaved=travelAgencyRepository.save(travelAgencyDTO);
-
-                if(isSaved) System.out.println("Data saved successfully");
-                else {
-                    System.err.println("Failed to save data");
-                    throw  new DataNotSavedException("Failed to save data");
+                if(!(travelAgencyRepository.checkDuplicateEmail(travelAgencyDTO.getEmail()))) {
+                    boolean isSaved = travelAgencyRepository.save(travelAgencyDTO);
+                    if (isSaved) System.out.println("Data saved successfully");
+                    else {
+                        System.err.println("Failed to save data");
+                        throw new DataNotSavedException("Failed to save data");
+                    }
                 }
+                else System.err.println("Duplicate email is present");
 
             }
         }
-
-
     }
 }

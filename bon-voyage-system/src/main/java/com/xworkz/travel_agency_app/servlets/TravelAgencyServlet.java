@@ -1,11 +1,12 @@
-package com.xworkz.travelAgencyApp.servlets;
+package com.xworkz.travel_agency_app.servlets;
 
-import com.xworkz.travelAgencyApp.dto.TravelAgencyDTO;
-import com.xworkz.travelAgencyApp.exceptions.DataInvalidException;
-import com.xworkz.travelAgencyApp.exceptions.DataNotSavedException;
-import com.xworkz.travelAgencyApp.exceptions.DuplicateEmailException;
-import com.xworkz.travelAgencyApp.service.TravelAgencyService;
-import com.xworkz.travelAgencyApp.service.TravelAgencyServiceImpl;
+import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
+import com.xworkz.travel_agency_app.exceptions.DataInvalidException;
+import com.xworkz.travel_agency_app.exceptions.DataNotSavedException;
+import com.xworkz.travel_agency_app.exceptions.DuplicateEmailException;
+import com.xworkz.travel_agency_app.service.TravelAgencyService;
+import com.xworkz.travel_agency_app.service.TravelAgencyServiceImpl;
+import com.xworkz.travel_agency_app.util.NumberFormatCheck;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/travelagency",loadOnStartup = 1)
 public class TravelAgencyServlet extends HttpServlet {
 
-    TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
+    static TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
 
 
     public TravelAgencyServlet(){
@@ -36,7 +37,7 @@ public class TravelAgencyServlet extends HttpServlet {
         String fullName=req.getParameter("fullName");
         String email=req.getParameter("email");
         String password=req.getParameter("password");
-        long phoneNo=Long.parseLong(req.getParameter("phoneNo"));
+        long phoneNo= NumberFormatCheck.parseLongSafe(req.getParameter("phoneNo"));
         String country=req.getParameter("country");
 
         TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
