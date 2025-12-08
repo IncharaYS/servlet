@@ -1,10 +1,13 @@
 package com.xworkz.travel_agency_app.service;
 
+import com.xworkz.travel_agency_app.dto.SearchDTO;
 import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
 import com.xworkz.travel_agency_app.exceptions.DataInvalidException;
 import com.xworkz.travel_agency_app.exceptions.DataNotSavedException;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepository;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepositoryImpl;
+
+import java.util.Optional;
 
 public class TravelAgencyServiceImpl implements TravelAgencyService {
 
@@ -18,42 +21,11 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
 
         boolean isInvalid=false;
         if (travelAgencyDTO!=null){
-            if(travelAgencyDTO.getFullName()==null||travelAgencyDTO.getFullName().length()<3){
-                System.err.println("Invalid full name entered");
-                isInvalid=true;
-            }
-
-            else if(travelAgencyDTO.getEmail()==null||travelAgencyDTO.getEmail().length()<6){
-                System.err.println("Invalid email entered");
-                isInvalid=true;
-            }
-
-            else if(travelAgencyDTO.getPassword()==null||travelAgencyDTO.getPassword().length()<8){
-                System.err.println("Invalid password entered");
-                isInvalid=true;
-            }
-
-            else if(travelAgencyDTO.getPhoneNo()<0){
-                System.err.println("Invalid phone number entered");
-                isInvalid=true;
-            }
-
-            else if(travelAgencyDTO.getCountry()==null||travelAgencyDTO.getCountry().length()<4){
-                System.err.println("Invalid country entered");
-                isInvalid=true;
-            }
-
-
-            else {
-                System.out.println("All data is valid");
-            }
-
-
+            isInvalid = validateFields(travelAgencyDTO, isInvalid);
 
             if (isInvalid) {
                 throw new DataInvalidException("Data must be valid");
             }
-
             else {
                 if(!(travelAgencyRepository.checkDuplicateEmail(travelAgencyDTO.getEmail()))) {
                     boolean isSaved = travelAgencyRepository.save(travelAgencyDTO);
@@ -67,5 +39,49 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
 
             }
         }
+    }
+
+    @Override
+    public Optional<TravelAgencyDTO> validateAndSearchByEmail(SearchDTO searchDTO) {
+            if (searchDTO.getEmail()==null||searchDTO.getEmail().length()<6) {
+                System.err.println("Invalid email entered");
+                return Optional.empty();
+            }
+            return travelAgencyRepository.findByEmail(searchDTO);
+        }
+
+
+
+     private static boolean validateFields(TravelAgencyDTO travelAgencyDTO, boolean isInvalid) {
+        if(travelAgencyDTO.getFullName()==null|| travelAgencyDTO.getFullName().length()<3){
+            System.err.println("Invalid full name entered");
+            isInvalid =true;
+        }
+
+        else if(travelAgencyDTO.getEmail()==null|| travelAgencyDTO.getEmail().length()<6){
+            System.err.println("Invalid email entered");
+            isInvalid =true;
+        }
+
+        else if(travelAgencyDTO.getPassword()==null|| travelAgencyDTO.getPassword().length()<8){
+            System.err.println("Invalid password entered");
+            isInvalid =true;
+        }
+
+        else if(travelAgencyDTO.getPhoneNo()<0){
+            System.err.println("Invalid phone number entered");
+            isInvalid =true;
+        }
+
+        else if(travelAgencyDTO.getCountry()==null|| travelAgencyDTO.getCountry().length()<4){
+            System.err.println("Invalid country entered");
+            isInvalid =true;
+        }
+
+
+        else {
+            System.out.println("All data is valid");
+        }
+        return isInvalid;
     }
 }

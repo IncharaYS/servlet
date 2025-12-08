@@ -1,11 +1,13 @@
 package com.xworkz.travel_agency_app.repository;
 
 import com.xworkz.travel_agency_app.constants.DbConstants;
+import com.xworkz.travel_agency_app.dto.SearchDTO;
 import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
 import com.xworkz.travel_agency_app.exceptions.DuplicateEmailException;
 import lombok.SneakyThrows;
 
 import java.sql.*;
+import java.util.Optional;
 
 public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
     @Override
@@ -74,6 +76,47 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
                 }
             }
             return isDuplicate;
+    }
+
+    @Override
+    @SneakyThrows
+    public Optional<TravelAgencyDTO> findByEmail(SearchDTO searchDTO) {
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver not loaded ");
+        }
+
+
+        String searchByEmailQuery="select * from  user_info where email=?;";
+        try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
+             PreparedStatement checkStatement = connection.prepareStatement(searchByEmailQuery)) {
+
+
+            checkStatement.setString(1,searchDTO.getEmail());
+
+            try (ResultSet userInfo = checkStatement.executeQuery()) {
+
+                if (userInfo.next()) {
+                    String fullName=userInfo.getString("full_name");
+                    String email=userInfo.getString("email");
+                    String password=userInfo.getString("password");
+                    Long phoneNo=userInfo.getLong("phone_no");
+                    String country=userInfo.getString("country");
+
+
+                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+
+
+                    System.out.println("Fetched User Info:"+travelAgencyDTO);
+
+                    return Optional.of(travelAgencyDTO);
+
+                }
+            }
+        }
+        return Optional.empty();
     }
 }
 

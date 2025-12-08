@@ -27,6 +27,8 @@
       <ul class="navbar-nav ms-auto fs-5">
         <li class="nav-item fw-medium"><a class="nav-link" href="index">Home</a></li>
         <li class="nav-item fw-medium"><a class="nav-link" href="travelagency">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+
       </ul>
     </div>
   </div>
