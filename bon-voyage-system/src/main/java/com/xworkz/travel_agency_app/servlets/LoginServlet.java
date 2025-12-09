@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet(urlPatterns = "/login",loadOnStartup = 1)
+@WebServlet(urlPatterns = "/login",loadOnStartup = 6)
 public class LoginServlet extends HttpServlet {
 
     TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();

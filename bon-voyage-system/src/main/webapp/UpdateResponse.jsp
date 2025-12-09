@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -29,20 +30,18 @@
 <div class="container py-5 d-flex justify-content-center">
   <div class="card shadow-lg rounded-4 p-5 w-100" style="max-width: 900px;">
 
-    <h4 class="text-center text-success mb-3">${successMsg}</h4>
-    <h4 class="text-center text-danger mb-4">${failureMsg}</h4>
+    <h4 class="text-center text-success mb-3">${updatedSuccessfully}</h4>
 
-    <% if (request.getAttribute("successMsg") != null) { %>
     <h3 class="mb-4 ps-3" style="font-weight:700;">Submitted Details:</h3>
     <hr>
 
     <div class="ps-3">
-      <p><strong>Full Name:</strong> ${dto.fullName}</p>
-      <p><strong>Email:</strong> ${dto.email}</p>
-      <p><strong>Phone Number:</strong> ${dto.phoneNo}</p>
-      <p><strong>Country:</strong> ${dto.country}</p>
+      <p><strong>Full Name:</strong> ${userInfo.fullName}</p>
+      <p><strong>Email:</strong> ${userInfo.email}</p>
+      <p><strong>Phone Number:</strong> ${userInfo.phoneNo}</p>
+      <p><strong>Country:</strong> ${userInfo.country}</p>
     </div>
-    <% } %>
+
 
     <div class="mt-4 text-center">
       <a href="Search.jsp" class="btn border-primary rounded btn-primary w-50">Search Another User</a>

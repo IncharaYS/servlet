@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/travelagency",loadOnStartup = 1)
 public class RegisterServlet extends HttpServlet {
 
-    static TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
+    static final TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
 
 
     public RegisterServlet(){
@@ -46,8 +46,6 @@ public class RegisterServlet extends HttpServlet {
 
         try{
             travelAgencyService.validateAndSave(travelAgencyDTO);
-//            req.setAttribute("successMsg","Data Saved Successfully");
-//            req.setAttribute("userInfo",travelAgencyDTO);
 
         }
         catch(DataInvalidException die){
@@ -72,7 +70,6 @@ public class RegisterServlet extends HttpServlet {
 
         System.out.println(travelAgencyDTO);
         req.getRequestDispatcher("Login.jsp").forward(req,resp);
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
     }
 }

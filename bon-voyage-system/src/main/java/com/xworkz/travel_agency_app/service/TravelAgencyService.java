@@ -10,4 +10,5 @@ public interface TravelAgencyService {
 
     Optional<TravelAgencyDTO> validateAndSearchByEmail(SearchDTO searchDTO);
 
+    TravelAgencyDTO updateUser(TravelAgencyDTO travelAgencyDTO);
 }

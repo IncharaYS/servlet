@@ -51,9 +51,10 @@
 
 <div class="mb-3">
   <label for="email" class="form-label fw-bold">Email:<span class="required">*</span></label>
-  <input type="text" id="email" name="email"   disabled class="form-control" placeholder="Enter your email"
+  <input type="text" id="email" name="email"  disabled  class="form-control" placeholder="Enter your email"
          oninput="validateEmail(this)" value="${userInfo.email}">
   <small id="emailMsg" class="text-danger"></small>
+    <input type="hidden" name="email" value="${userInfo.email}">
 </div>
 
       <div class="mb-3">
@@ -78,9 +79,12 @@
         <small id="countryMsg" class="text-danger"></small>
       </div>
 
+
+        <h6 id="invalidInfo" class="text-danger">${invalidData}</h6>
       <div class="text-center mt-4">
         <input type="submit" class="btn btn-primary px-5" value="Update"></button>
       </div>
+
 
 
 

@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.Optional;
 
 public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
+
     @Override
     public boolean save(TravelAgencyDTO travelAgencyDTO) {
         boolean isSaved = false;
@@ -117,6 +118,39 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
             }
         }
         return Optional.empty();
+    }
+
+    @SneakyThrows
+    @Override
+    public Optional<TravelAgencyDTO> update(TravelAgencyDTO travelAgencyDTO) {
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver not loaded ");
+        }
+
+        String updateQuery="update user_info set full_name=?,password=?,phone_no=?,country=? where email=?";
+
+
+        try(Connection connection=DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());
+        PreparedStatement updateStatement=connection.prepareStatement(updateQuery)){
+
+            updateStatement.setString(1,travelAgencyDTO.getFullName());
+            updateStatement.setString(2,travelAgencyDTO.getPassword());
+            updateStatement.setLong(3,travelAgencyDTO.getPhoneNo());
+            updateStatement.setString(4,travelAgencyDTO.getCountry());
+            updateStatement.setString(5,travelAgencyDTO.getEmail());
+
+
+            int noOfRowsUpdated=updateStatement.executeUpdate();
+            System.out.println("No of rows updated:"+noOfRowsUpdated);
+
+
+            SearchDTO searchDTO=new SearchDTO(travelAgencyDTO.getEmail());
+            TravelAgencyRepository travelAgencyRepository=new TravelAgencyRepositoryImpl();
+            return travelAgencyRepository.findByEmail(searchDTO);
+        }
     }
 }
 

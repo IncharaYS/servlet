@@ -13,6 +13,8 @@ public interface TravelAgencyRepository {
     }
 
     Optional<TravelAgencyDTO> findByEmail(SearchDTO searchDTO);
+
+    Optional<TravelAgencyDTO> update(TravelAgencyDTO travelAgencyDTO);
 }
 
 

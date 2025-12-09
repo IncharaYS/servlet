@@ -4,6 +4,7 @@ import com.xworkz.travel_agency_app.dto.SearchDTO;
 import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
 import com.xworkz.travel_agency_app.exceptions.DataInvalidException;
 import com.xworkz.travel_agency_app.exceptions.DataNotSavedException;
+import com.xworkz.travel_agency_app.exceptions.DataNotUpdatedException;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepository;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepositoryImpl;
 
@@ -12,30 +13,28 @@ import java.util.Optional;
 public class TravelAgencyServiceImpl implements TravelAgencyService {
 
 
-    TravelAgencyRepository travelAgencyRepository=new TravelAgencyRepositoryImpl();
+    TravelAgencyRepository travelAgencyRepository = new TravelAgencyRepositoryImpl();
 
 
     @Override
     public void validateAndSave(TravelAgencyDTO travelAgencyDTO) {
 
 
-        boolean isInvalid=false;
-        if (travelAgencyDTO!=null){
+        boolean isInvalid = false;
+        if (travelAgencyDTO != null) {
             isInvalid = validateFields(travelAgencyDTO, isInvalid);
 
             if (isInvalid) {
                 throw new DataInvalidException("Data must be valid");
-            }
-            else {
-                if(!(travelAgencyRepository.checkDuplicateEmail(travelAgencyDTO.getEmail()))) {
+            } else {
+                if (!(travelAgencyRepository.checkDuplicateEmail(travelAgencyDTO.getEmail()))) {
                     boolean isSaved = travelAgencyRepository.save(travelAgencyDTO);
                     if (isSaved) System.out.println("Data saved successfully");
                     else {
                         System.err.println("Failed to save data");
                         throw new DataNotSavedException("Failed to save data");
                     }
-                }
-                else System.err.println("Duplicate email is present");
+                } else System.err.println("Duplicate email is present");
 
             }
         }
@@ -43,12 +42,36 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
 
     @Override
     public Optional<TravelAgencyDTO> validateAndSearchByEmail(SearchDTO searchDTO) {
-            if (searchDTO.getEmail()==null||searchDTO.getEmail().length()<6) {
-                System.err.println("Invalid email entered");
-                return Optional.empty();
-            }
-            return travelAgencyRepository.findByEmail(searchDTO);
+        if (searchDTO.getEmail() == null || searchDTO.getEmail().length() < 6) {
+            System.err.println("Invalid email entered");
+            return Optional.empty();
         }
+        return travelAgencyRepository.findByEmail(searchDTO);
+    }
+
+    @Override
+    public TravelAgencyDTO updateUser(TravelAgencyDTO travelAgencyDTO) {
+        boolean isInvalid = false;
+        if (travelAgencyDTO != null) {
+            isInvalid = TravelAgencyServiceImpl.validateFields(travelAgencyDTO, isInvalid);
+
+            if (isInvalid) {
+                throw new DataInvalidException("Data must be valid");
+            } else {
+                Optional<TravelAgencyDTO> isUpdated = travelAgencyRepository.update(travelAgencyDTO);
+                if (isUpdated.isPresent()) {
+                    System.out.println("Data updated successfully");
+                    System.out.println("Updated data:" + isUpdated);
+                    return isUpdated.get();
+                } else {
+                    System.err.println("Failed to update data");
+                    throw new DataNotUpdatedException("Failed to update data");
+                }
+
+            }
+        }
+        return null;
+    }
 
     private static boolean validateFields(TravelAgencyDTO travelAgencyDTO, boolean isInvalid) {
         if(travelAgencyDTO.getFullName()==null|| travelAgencyDTO.getFullName().length()<3){

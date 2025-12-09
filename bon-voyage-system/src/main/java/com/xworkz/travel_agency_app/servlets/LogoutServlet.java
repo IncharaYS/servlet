@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/logout",loadOnStartup = 10)
+@WebServlet(urlPatterns = "/logout",loadOnStartup=0)
 public class LogoutServlet extends HttpServlet {
     public LogoutServlet(){
         System.out.println("Logout servlet instance created");
