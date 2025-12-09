@@ -25,23 +25,26 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("Search.jsp").forward(req,resp);
+        String action=req.getParameter("action");
+        if("Submit".equalsIgnoreCase(action)) {
 
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            String email = req.getParameter("email");
+            SearchDTO searchDTO = new SearchDTO(email);
 
-        String email=req.getParameter("email");
-        SearchDTO searchDTO=new SearchDTO(email);
+            Optional<TravelAgencyDTO> userInfo = travelAgencyService.validateAndSearchByEmail(searchDTO);
 
-        Optional<TravelAgencyDTO> userInfo=travelAgencyService.validateAndSearchByEmail(searchDTO);
-
-        if(userInfo.isPresent()){
-            req.setAttribute("userInfo",userInfo.get());
+            if (userInfo.isPresent()) {
+                req.setAttribute("userInfo", userInfo.get());
+            } else req.setAttribute("failureMsg", "User with entered email not found!");
         }
-        else req.setAttribute("failureMsg","User with entered email not found!");
 
+        if("Clear".equalsIgnoreCase(action)){
+            System.out.println("Clear logic");
+            req.setAttribute("userInfo",null );
+        }
         req.getRequestDispatcher("Search.jsp").forward(req,resp);
     }
+
+
 }

@@ -9,4 +9,5 @@ public interface TravelAgencyService {
     void  validateAndSave(TravelAgencyDTO travelAgencyDTO);
 
     Optional<TravelAgencyDTO> validateAndSearchByEmail(SearchDTO searchDTO);
+
 }

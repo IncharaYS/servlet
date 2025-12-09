@@ -16,18 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/travelagency",loadOnStartup = 1)
-public class TravelAgencyServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     static TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
 
 
-    public TravelAgencyServlet(){
+    public RegisterServlet(){
         System.out.println("Travel Agency Servlet created");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("TravelAgency.jsp").forward(req,resp);
+        req.getRequestDispatcher("Register.jsp").forward(req,resp);
     }
 
     @Override
@@ -46,25 +46,32 @@ public class TravelAgencyServlet extends HttpServlet {
 
         try{
             travelAgencyService.validateAndSave(travelAgencyDTO);
-            req.setAttribute("successMsg","Data Saved Successfully");
-            req.setAttribute("dto",travelAgencyDTO);
+//            req.setAttribute("successMsg","Data Saved Successfully");
+//            req.setAttribute("userInfo",travelAgencyDTO);
 
         }
         catch(DataInvalidException die){
             System.err.println("Invalid data entered");
-            req.setAttribute("failureMsg","Entered data is invalid");
+            req.setAttribute("invalidData","Entered data is invalid");
+            req.setAttribute("dto",travelAgencyDTO);
+            req.getRequestDispatcher("Register.jsp").forward(req,resp);
+
         }
         catch (DataNotSavedException dnse){
             System.err.println("Data not saved successfully");
             req.setAttribute("failureMsg","Entered data is not saved");
+            req.setAttribute("dto",travelAgencyDTO);
+            req.getRequestDispatcher("Register.jsp").forward(req,resp);
         }
         catch (DuplicateEmailException dee){
             System.err.println("Data not saved successfully as email is duplicate value");
-            req.setAttribute("failureMsg","Entered email is already registered");
+            req.setAttribute("dupEmail","Entered email is already registered");
+            req.setAttribute("dto",travelAgencyDTO);
+            req.getRequestDispatcher("Register.jsp").forward(req,resp);
         }
 
         System.out.println(travelAgencyDTO);
-        req.getRequestDispatcher("TravelAgencyResponse.jsp").forward(req,resp);
+        req.getRequestDispatcher("Login.jsp").forward(req,resp);
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
     }

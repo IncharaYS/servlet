@@ -50,9 +50,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
             return travelAgencyRepository.findByEmail(searchDTO);
         }
 
-
-
-     private static boolean validateFields(TravelAgencyDTO travelAgencyDTO, boolean isInvalid) {
+    private static boolean validateFields(TravelAgencyDTO travelAgencyDTO, boolean isInvalid) {
         if(travelAgencyDTO.getFullName()==null|| travelAgencyDTO.getFullName().length()<3){
             System.err.println("Invalid full name entered");
             isInvalid =true;

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Travel Agency Response</title>
+  <title>Update Response</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -16,8 +16,8 @@
 
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto fs-5">
-        <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="travelagency">Register</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold">${userName}</a></li>
+        <li class="nav-item"><a class="nav-link" href="home">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
 
       </ul>
@@ -45,7 +45,7 @@
     <% } %>
 
     <div class="mt-4 text-center">
-      <a href="TravelAgency.jsp" class="btn border-primary rounded btn-primary w-50">Submit Another Response</a>
+      <a href="Search.jsp" class="btn border-primary rounded btn-primary w-50">Search Another User</a>
     </div>
 
   </div>

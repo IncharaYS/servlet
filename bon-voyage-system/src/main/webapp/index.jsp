@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +17,7 @@
 
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav ms-auto fs-5">
-                <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="travelagency">Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
             </ul>
         </div>
     </div>

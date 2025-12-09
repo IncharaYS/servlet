@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -25,9 +27,6 @@
 
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto fs-5">
-        <li class="nav-item fw-medium"><a class="nav-link" href="index">Home</a></li>
-        <li class="nav-item fw-medium"><a class="nav-link" href="travelagency">Register</a></li>
-          <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
 
       </ul>
     </div>
@@ -38,33 +37,36 @@
   <div class="card shadow-lg rounded-4 p-4 bg-white">
     <h3 class="mb-4 text-center" style="color:#000080;">Travel Agency Registration</h3>
 
-    <form action="travelagency" method="post" onsubmit="return validateForm()">
+    <form action="travelagency" method="post" onsubmit="return validateForm()" >
 
 <div class="mb-3">
     <label for="fullName" class="form-label fw-bold">Full Name:<span class="required">*</span></label>
-  <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name">
+  <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name" value="${dto.fullName}">
   <small id="nameMsg" class="text-danger"></small>
 </div>
 
 
 <div class="mb-3">
-  <label for="email" class="form-label fw-bold">Email:<span class="required">*</span></label>
-  <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email"
+  <label for="email" class="form-label fw-bold">Email:<span class="required">*</span><small id="dupEmailMsg" class="text-danger"> ${dupEmail}</small>
+  </label>
+  <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email" value="${dto.email}"
          oninput="validateEmail(this)">
   <small id="emailMsg" class="text-danger"></small>
 </div>
 
       <div class="mb-3">
         <label for="password" class="form-label fw-bold">Password:<span class="required">*</span></label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"
+        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" value="${dto.password}"
                oninput="validatePassword(this)">
         <small id="passwordMsg" class="text-danger"></small>
       </div>
 
 
+
+
       <div class="mb-3">
         <label for="phoneNo" class="form-label fw-bold">Phone Number:<span class="required">*</span></label>
-        <input type="number" id="phoneNo" name="phoneNo" class="form-control" placeholder="Enter your phone number"
+        <input type="number" id="phoneNo" name="phoneNo" class="form-control" placeholder="Enter your phone number" value="${dto.phoneNo}"
                oninput="validatePhoneNo(this)">
         <small id="phoneNoMsg" class="text-danger"></small>
       </div>
@@ -72,10 +74,15 @@
 
       <div class="mb-3">
         <label for="country" class="form-label fw-bold">Country:<span class="required">*</span></label>
-        <input type="text" id="country" name="country" class="form-control" placeholder="Enter your country">
+        <input type="text" id="country" name="country" class="form-control" placeholder="Enter your country" value="${dto.country}">
         <small id="countryMsg" class="text-danger"></small>
       </div>
+        <c:if test="${dupEmail!=null}">
+            <small id="dupEmail" class="text-danger">${dupEmail} : <a href="login">Login</a></small>
+        </c:if>
 
+        <small id="dataNotSavedMsg" class="text-danger">${failureMsg}</small>
+        <small id="invalidDataMsg" class="text-danger">${invalidData}</small>
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-primary px-5">Submit</button>
       </div>

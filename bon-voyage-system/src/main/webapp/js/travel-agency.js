@@ -71,3 +71,21 @@ function validateForm() {
     }
     return true;
 }
+
+
+function validateLoginForm() {
+    let requiredFields=[
+        {id:"email",name:"Email" },
+        {id:"password",name:"Password" },
+    ];
+
+    for (let field of requiredFields) {
+        let input=document.getElementById(field.id);
+        if (!input||input.value.trim()==="") {
+            alert(field.name+" cannot be empty");
+            input.focus();
+            return false;
+        }
+    }
+    return true;
+}

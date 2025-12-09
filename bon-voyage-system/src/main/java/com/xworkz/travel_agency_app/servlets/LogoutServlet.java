@@ -7,14 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/index",loadOnStartup = 0)
-public class IndexServlet extends HttpServlet {
-    public IndexServlet(){
-        System.out.println("Index servlet instance created");
+@WebServlet(urlPatterns = "/logout",loadOnStartup = 10)
+public class LogoutServlet extends HttpServlet {
+    public LogoutServlet(){
+        System.out.println("Logout servlet instance created");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().removeAttribute("userEmail");
         req.getRequestDispatcher("index.jsp").forward(req,resp);
     }
 }
