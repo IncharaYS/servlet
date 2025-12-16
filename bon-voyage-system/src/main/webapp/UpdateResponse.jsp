@@ -6,15 +6,15 @@
   <meta charset="UTF-8">
   <title>Update Response</title>
   <style>
-<!--    body {-->
-<!--      background-image: url('images/bg.png');-->
-<!--      background-color: #f2f6ff;-->
-<!--      background-repeat: no-repeat;-->
-<!--      background-size: cover;-->
-<!--      background-position: center;-->
-<!--      backdrop-filter: blur(3px);-->
-<!--      font-family: 'Poppins', sans-serif;-->
-<!--}-->
+    body {
+      background-image: url('images/bg.png');
+      background-color: #f2f6ff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(3px);
+      font-family: 'Poppins', sans-serif;
+}
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -40,7 +40,7 @@
 
 
 <div class="container py-5 d-flex justify-content-center">
-  <div class="card shadow-lg rounded-4 p-5 w-100 " style="max-width: 900px ;">
+  <div class="card shadow-lg rounded-4 p-3 w-100 " style="max-width: 460px ;">
 
     <h4 class="text-center text-success mb-3">${updatedSuccessfully}</h4>
 

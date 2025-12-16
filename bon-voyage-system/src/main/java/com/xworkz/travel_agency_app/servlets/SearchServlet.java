@@ -73,7 +73,6 @@ public class SearchServlet extends HttpServlet {
 
                 if (!userInfo.isEmpty())
                 {
-                    System.out.println(userInfo);
                     req.setAttribute("userInfo", userInfo);
                 } else req.setAttribute("failureMsg", "User with country name not found!");
 

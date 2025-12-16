@@ -33,6 +33,8 @@ public interface TravelAgencyRepository {
     default Optional<TravelAgencyDTO> update(TravelAgencyDTO travelAgencyDTO){
         return Optional.empty();
     }
+
+    boolean delete(String email);
 }
 
 

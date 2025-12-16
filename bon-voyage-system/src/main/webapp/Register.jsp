@@ -7,6 +7,8 @@
   <title>Travel Agency</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/travel-agency.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <style>
         .form-label{
             color:#000080;
@@ -15,15 +17,15 @@
         color:red;
         }
 
-<!--    body {-->
-<!--      background-image: url('images/bg.png');-->
-<!--      background-color: #f2f6ff;-->
-<!--      background-repeat: no-repeat;-->
-<!--      background-size: cover;-->
-<!--      background-position: center;-->
-<!--      backdrop-filter: blur(3px);-->
-<!--      font-family: 'Poppins', sans-serif;-->
-<!--}-->
+    body {
+      background-image: url('images/bg.png');
+      background-color: #f2f6ff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(3px);
+      font-family: 'Poppins', sans-serif;
+}
 
     </style>
 </head>
@@ -37,14 +39,15 @@
 
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto fs-5">
-
+              <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container mt-5">
-  <div class="card shadow-lg rounded-4 p-4 bg-white ">
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg rounded-4 p-4 bg-white w-100" style="max-width: 420px;">
+
     <h3 class="mb-4 text-center" style="color:#000080;">Travel Agency Registration</h3>
 
     <form action="travelagency" method="post" onsubmit="return validateForm()" >
@@ -60,7 +63,7 @@
   <label for="email" class="form-label fw-bold">Email:<span class="required">*</span><small id="dupEmailMsg" class="text-danger"> ${dupEmail}</small>
   </label>
   <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email" value="${dto.email}"
-         oninput="validateEmail(this)">
+         oninput="validateEmailForRegistration(this)">
   <small id="emailMsg" class="text-danger"></small>
 </div>
 

@@ -1,14 +1,43 @@
-function validateEmail() {
+async function validateEmail() {
     const input=document.getElementById("email");
     const msg=document.getElementById("emailMsg");
     const email=input.value.trim();
     const pattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
     if (email === "") {
         msg.textContent="Email is required.";
 
     } else if (pattern.test(email)) {
         msg.textContent="";
+         const exist = await axios("http://localhost:8082/bon-voyage-system/checkEmail?email="+email);
+          if (exist.data === false) {
+                    msg.textContent = "Your email is not registered";
+                }
+    } else {
+        msg.textContent="Entered email is not valid.";
+
+    }
+}
+
+
+async function validateEmailForRegistration() {
+    const input=document.getElementById("email");
+    const msg=document.getElementById("emailMsg");
+    const email=input.value.trim();
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|org|net|edu|gov|co\.in)$/;
+
+
+
+    if (email === "") {
+        msg.textContent="Email is required.";
+
+    } else if (pattern.test(email)) {
+        msg.textContent="";
+         const exist = await axios("http://localhost:8082/bon-voyage-system/checkEmail?email="+email);
+          if (exist.data === true) {
+                    msg.textContent = "Your email is already registered";
+                }
     } else {
         msg.textContent="Entered email is not valid.";
 
@@ -151,6 +180,8 @@ function togglePassword() {
       const errorMsg = document.getElementById("errorMsg");
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+
+
       errorMsg.textContent = pattern.test(input.value)
           ? ""
           : "Invalid email format";
@@ -165,3 +196,5 @@ function togglePassword() {
           ? ""
           : "Phone number must be 10 digits";
   }
+
+

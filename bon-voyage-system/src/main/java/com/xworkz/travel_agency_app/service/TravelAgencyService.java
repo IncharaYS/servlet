@@ -18,4 +18,8 @@ public interface TravelAgencyService {
     List<TravelAgencyDTO> validateAndSearchByCountry(SearchDTO searchDTO);
 
     TravelAgencyDTO updateUser(TravelAgencyDTO travelAgencyDTO);
+
+    boolean checkDuplicateEmail(String email);
+
+    boolean delete(String email);
 }

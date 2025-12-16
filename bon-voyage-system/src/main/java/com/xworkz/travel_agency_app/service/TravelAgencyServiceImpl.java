@@ -5,6 +5,7 @@ import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
 import com.xworkz.travel_agency_app.exceptions.DataInvalidException;
 import com.xworkz.travel_agency_app.exceptions.DataNotSavedException;
 import com.xworkz.travel_agency_app.exceptions.DataNotUpdatedException;
+import com.xworkz.travel_agency_app.exceptions.DuplicateEmailException;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepository;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepositoryImpl;
 
@@ -90,7 +91,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
                 throw new DataInvalidException("Data must be valid");
             } else {
                 Optional<TravelAgencyDTO> isUpdated = travelAgencyRepository.update(travelAgencyDTO);
-                if (Collections.emptyList().equals(isUpdated)) {
+                if (isUpdated.isPresent()) {
                     System.out.println("Data updated successfully");
                     System.out.println("Updated data:" + isUpdated);
                     return isUpdated.get();
@@ -102,6 +103,24 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean checkDuplicateEmail(String email) {
+        boolean isDuplicate=true;
+        try {
+            return travelAgencyRepository.checkDuplicateEmail(email);
+        }
+        catch (DuplicateEmailException dee){
+            return true;
+        }
+    }
+
+    @Override
+    public boolean delete(String email) {
+
+
+        return travelAgencyRepository.delete(email);
     }
 
     private static boolean validateFields(TravelAgencyDTO travelAgencyDTO, boolean isInvalid) {

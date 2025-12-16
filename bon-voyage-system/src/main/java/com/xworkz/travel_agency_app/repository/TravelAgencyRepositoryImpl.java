@@ -30,7 +30,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
 
-        String insertQuery = "insert into user_info(full_name,email,password,phone_no,country) values(?,?,?,?,?);";
+        String insertQuery = "insert into user_info(full_name,email,password,phone_no,country,is_deleted) values(?,?,?,?,?,0);";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)){
 
 
@@ -64,7 +64,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
         boolean isDuplicate = false;
 
 
-        String emailCheckQuery = "select 1 from user_info where email=?";
+        String emailCheckQuery = "select 1 from user_info where email=? and is_deleted=0";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
                 PreparedStatement checkStatement = connection.prepareStatement(emailCheckQuery)) {
 
@@ -88,7 +88,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
 
-        String searchByEmailQuery="select * from  user_info where email=?;";
+        String searchByEmailQuery="select * from  user_info where email=? and is_deleted=0;";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
              PreparedStatement checkStatement = connection.prepareStatement(searchByEmailQuery)) {
 
@@ -107,11 +107,6 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
                     TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
-
-
-
-                    System.out.println("Fetched User Info:"+travelAgencyDTO);
-
                     return Optional.of(travelAgencyDTO);
 
                 }
@@ -127,7 +122,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
 
-        String searchByNameQuery ="select * from  user_info where full_name=?;";
+        String searchByNameQuery ="select * from  user_info where full_name=? and is_deleted=0;";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
              PreparedStatement checkStatement = connection.prepareStatement(searchByNameQuery)) {
 
@@ -167,7 +162,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
 
-        String searchByPhoneNoQuery ="select * from  user_info where phone_no=?;";
+        String searchByPhoneNoQuery ="select * from  user_info where phone_no=? and is_deleted=0;";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
              PreparedStatement checkStatement = connection.prepareStatement(searchByPhoneNoQuery)) {
 
@@ -207,7 +202,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
 
-        String searchByCountryQuery ="select * from  user_info where country=?;";
+        String searchByCountryQuery ="select * from  user_info where country=? and is_deleted=0;";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
              PreparedStatement checkStatement = connection.prepareStatement(searchByCountryQuery)) {
 
@@ -227,10 +222,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
 
                     TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
-                    System.err.println(travelAgencyDTO);
                     customerList.add(travelAgencyDTO);
-
-
 
                 }
 
@@ -249,7 +241,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
 
  
 
-        String updateQuery="update user_info set full_name=?,password=?,phone_no=?,country=? where email=?";
+        String updateQuery="update user_info set full_name=?,password=?,phone_no=?,country=? where email=? and is_deleted=0";
 
 
         try(Connection connection=DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());
@@ -270,6 +262,21 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
             TravelAgencyRepository travelAgencyRepository=new TravelAgencyRepositoryImpl();
             return travelAgencyRepository.findByEmail(searchDTO);
         }
+    }
+
+    @Override
+    @SneakyThrows
+    public boolean delete(String email) {
+
+        String deleteQuery="update user_info set is_deleted=1 where email=? and is_deleted=0 limit 1;";
+        try(Connection connection=DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());
+            PreparedStatement deleteStatement=connection.prepareStatement(deleteQuery)){
+            deleteStatement.setString(1,email);
+            int noOfRowsDeleted=deleteStatement.executeUpdate();
+            System.out.println("Number of rows deleted:"+noOfRowsDeleted);
+            if (noOfRowsDeleted>0) return true;
+        }
+        return false;
     }
 }
 

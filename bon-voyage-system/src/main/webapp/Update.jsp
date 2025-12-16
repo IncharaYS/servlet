@@ -17,15 +17,15 @@
         color:red;
         }
 
-<!--    body {-->
-<!--      background-image: url('images/bg.png');-->
-<!--      background-color: #f2f6ff;-->
-<!--      background-repeat: no-repeat;-->
-<!--      background-size: cover;-->
-<!--      background-position: center;-->
-<!--      backdrop-filter: blur(3px);-->
-<!--      font-family: 'Poppins', sans-serif;-->
-<!--}-->
+    body {
+      background-image: url('images/bg.png');
+      background-color: #f2f6ff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(3px);
+      font-family: 'Poppins', sans-serif;
+}
 
 
     </style>
@@ -52,8 +52,8 @@
   </div>
 </nav>
 
-<div class="container mt-5 justify-content-center">
-  <div class="card shadow-lg rounded-4 p-4 bg-white  " style="max-width: 900px;">
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg rounded-4 p-4 bg-white w-100" style="max-width: 420px;">
     <h3 class="mb-4 text-center" style="color:#000080;">Update User Information:</h3>
 
     <form action="update" method="post" onsubmit="return validateForm()">

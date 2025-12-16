@@ -7,15 +7,15 @@
   <title>Travel Agency Response</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-<!--    body {-->
-<!--      background-image: url('images/bg.png');-->
-<!--      background-color: #f2f6ff;-->
-<!--      background-repeat: no-repeat;-->
-<!--      background-size: cover;-->
-<!--      background-position: center;-->
-<!--      backdrop-filter: blur(3px);-->
-<!--      font-family: 'Poppins', sans-serif;-->
-<!--}-->
+    body {
+      background-image: url('images/bg.png');
+      background-color: #f2f6ff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(3px);
+      font-family: 'Poppins', sans-serif;
+}
   </style>
 </head>
 <body style="background-color: #f2f6ff;">
@@ -39,7 +39,7 @@
 
 
 <div class="container py-5 d-flex justify-content-center">
-  <div class="card shadow-lg rounded-4 p-5 w-100 " style="max-width: 600px;">
+  <div class="card shadow-lg rounded-4 p-2 w-100 " style="max-width: 420px;">
 
     <h4 class="text-center text-success mb-3">${successMsg}</h4>
     <h4 class="text-center text-danger mb-4">${failureMsg}</h4>

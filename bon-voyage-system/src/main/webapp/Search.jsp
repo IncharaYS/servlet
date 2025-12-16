@@ -81,10 +81,12 @@
                 <input type="submit" class="btn btn-primary px-5 py-2 rounded-4 ms-5" name="action" value="Clear">
             </div>
 
+        <h4 class="text-center text-danger mb-4">${failureMsg}</h4>
+        <h4 class="text-center text-danger mb-4">${deleteSuccess}</h4>
+        <h4 class="text-center text-danger mb-4">${deleteFail}</h4>
 
         </form>
 
-            <h4 class="text-center text-danger mb-4">${failureMsg}</h4>
 
 
         <c:if test="${not empty userInfo}">
@@ -98,7 +100,8 @@
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Country</th>
-                        <th>Action</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
 
@@ -115,12 +118,20 @@
                                     Update
                                 </a>
                             </td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary"
+                                   href="delete?email=${user.email}">
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
         </c:if>
+
+
 
 
 

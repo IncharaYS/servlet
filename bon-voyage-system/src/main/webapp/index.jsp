@@ -34,7 +34,7 @@
 </nav>
 
 <div class="container d-flex justify-content-center align-items-center vh-100 ">
-    <div class="card shadow-lg rounded-4 p-4 text-center w-75 " style="max-width: 600px; background-color:#fff0ff;">
+    <div class="card shadow-lg rounded-4 p-4 text-center w-75 " style="max-width: 450px; background-color:#fff0ff;">
         <h1 class="mb-4">Welcome Bon Voyage Travel Agency</h1>
         <h5 class="mb-4">Click the button below to register</h5>
         <a href="travelagency" class="btn btn-primary btn-lg px-5 py-3 rounded-3">

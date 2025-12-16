@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Login page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/travel-agency.js"></script>
     <style>
         .form-label{
@@ -14,15 +15,15 @@
         .required{
         color:red;
         }
-<!--    body {-->
-<!--      background-image: url('images/bg.png');-->
-<!--      background-color: #f2f6ff;-->
-<!--      background-repeat: no-repeat;-->
-<!--      background-size: cover;-->
-<!--      background-position: center;-->
-<!--      backdrop-filter: blur(3px);-->
-<!--      font-family: 'Poppins', sans-serif;-->
-<!--}-->
+    body {
+      background-image: url('images/bg.png');
+      background-color: #f2f6ff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(3px);
+      font-family: 'Poppins', sans-serif;
+}
 
     </style>
 </head>
@@ -41,8 +42,9 @@
     </div>
 </nav>
 
-<div class="container d-flex  justify-content-center align-items-center vh-100">
-    <div class="card shadow-lg rounded-4 p-4  w-75 " style="max-width: 600px; background-color:#f2f6ff;">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg rounded-4 p-3 bg-white w-100" style="max-width: 420px;">
+
 
         <form action="login" method="post" onsubmit="return validateLoginForm()">
             <h5 class="mb-4 text-center">Login:</h5>

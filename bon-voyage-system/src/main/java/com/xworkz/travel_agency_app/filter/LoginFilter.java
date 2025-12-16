@@ -28,11 +28,12 @@ public class LoginFilter implements Filter {
         boolean loginPage = uri.endsWith("Login.jsp");
         boolean indexPage = uri.endsWith("index.jsp");
         boolean logoutPage = uri.endsWith("logout");
+        boolean checkEmail = uri.endsWith("checkEmail");
         boolean loginServlet = uri.endsWith("/login");
         boolean registerServlet = uri.endsWith("/travelagency");
         boolean resourceRequest = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/")||uri.contains("/bg.png");
 
-        if (loggedIn || loginPage || indexPage || logoutPage || loginServlet || resourceRequest||registerServlet) {
+        if (loggedIn || loginPage || indexPage || logoutPage || loginServlet || resourceRequest||registerServlet || checkEmail) {
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
