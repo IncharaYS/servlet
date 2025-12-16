@@ -10,41 +10,46 @@
 
   <style>
     body {
+        background-image: url('images/bg.png');
         background-color: #f2f6ff;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        backdrop-filter: blur(3px);
         font-family: 'Poppins', sans-serif;
     }
 
-    .navbar {
-        background: rgba(14,165,233,0.9);
-        backdrop-filter: blur(6px);
-    }
+        .navbar {
+            background: rgba(14,165,233,0.9);
+            backdrop-filter: blur(6px);
+        }
 
-    .navbar-brand {
-        font-weight: 600;
-        color: #fff !important;
-    }
+        .navbar-brand {
+            font-weight: 600;
+            color: #fff !important;
+        }
 
-    .response-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        padding: 40px 40px;
-        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
-        max-width: 1000px;
-        width: 80%;
-    }
+        .response-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 40px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+            max-width: 1000px;
+            width: 80%;
+        }
 
-    h4, h3 {
-        font-family: 'Poppins', sans-serif;
-    }
+        h4, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
 
-    .label-value p strong {
-        color: #0ea5e9;
-    }
+        .label-value p strong {
+            color: #0ea5e9;
+        }
 
-    .page-wrapper {
-        margin-top: 80px;
-        margin-bottom: 40px;
-    }
+        .page-wrapper {
+            margin-top: 80px;
+            margin-bottom: 40px;
+        }
   </style>
 </head>
 

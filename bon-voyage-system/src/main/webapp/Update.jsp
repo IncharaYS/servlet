@@ -7,6 +7,8 @@
   <title>Update page</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/travel-agency.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <style>
         .form-label{
             color:#000080;
@@ -15,8 +17,21 @@
         color:red;
         }
 
+<!--    body {-->
+<!--      background-image: url('images/bg.png');-->
+<!--      background-color: #f2f6ff;-->
+<!--      background-repeat: no-repeat;-->
+<!--      background-size: cover;-->
+<!--      background-position: center;-->
+<!--      backdrop-filter: blur(3px);-->
+<!--      font-family: 'Poppins', sans-serif;-->
+<!--}-->
+
+
     </style>
 </head>
+
+
 <body style="background-color: #f2f6ff;">
 
 
@@ -30,14 +45,15 @@
           <li class="nav-item"><a class="nav-link fw-bold">${userName}</a></li>
         <li class="nav-item fw-medium"><a class="nav-link" href="home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container mt-5">
-  <div class="card shadow-lg rounded-4 p-4 bg-white">
+<div class="container mt-5 justify-content-center">
+  <div class="card shadow-lg rounded-4 p-4 bg-white  " style="max-width: 900px;">
     <h3 class="mb-4 text-center" style="color:#000080;">Update User Information:</h3>
 
     <form action="update" method="post" onsubmit="return validateForm()">
@@ -57,15 +73,37 @@
     <input type="hidden" name="email" value="${userInfo.email}">
 </div>
 
-      <div class="mb-3">
-        <label for="password" class="form-label fw-bold">Password:<span class="required">*</span></label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"
-               oninput="validatePassword(this)" value="${userInfo.password}">
-        <small id="passwordMsg" class="text-danger"></small>
-      </div>
+<!--      <div class="mb-3">-->
+<!--        <label for="password" class="form-label fw-bold">Password:<span class="required">*</span></label>-->
+<!--        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"-->
+<!--               oninput="validatePassword(this)" value="${userInfo.password}">-->
+<!--        <small id="passwordMsg" class="text-danger"></small>-->
+<!--      </div>-->
 
 
-      <div class="mb-3">
+
+
+
+        <div class="mb-3 position-relative">
+            <label for="password" class="form-label fw-bold">
+                Password:<span class="required">*</span>
+            </label>
+            <div class="input-group">
+                <input type="password" id="password" name="password" class="form-control"
+                       placeholder="Enter your password"
+                       oninput="validatePassword(this)" value="${userInfo.password}">
+                <button type="button" class="btn btn-outline-secondary"
+                        onclick="togglePassword()" id="toggleBtn">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>
+            <small id="passwordMsg" class="text-danger"></small>
+        </div>
+
+
+
+
+        <div class="mb-3">
         <label for="phoneNo" class="form-label fw-bold">Phone Number:<span class="required">*</span></label>
         <input type="number" id="phoneNo" name="phoneNo" class="form-control" value="${userInfo.phoneNo}" placeholder="Enter your phone number"
                oninput="validatePhoneNo(this)" >
@@ -82,7 +120,7 @@
 
         <h6 id="invalidInfo" class="text-danger">${invalidData}</h6>
       <div class="text-center mt-4">
-        <input type="submit" class="btn btn-primary px-5" value="Update"></button>
+        <input type="submit" class="btn btn-primary px-5" value="Update">
       </div>
 
 

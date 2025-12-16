@@ -15,6 +15,16 @@
         color:red;
         }
 
+<!--    body {-->
+<!--      background-image: url('images/bg.png');-->
+<!--      background-color: #f2f6ff;-->
+<!--      background-repeat: no-repeat;-->
+<!--      background-size: cover;-->
+<!--      background-position: center;-->
+<!--      backdrop-filter: blur(3px);-->
+<!--      font-family: 'Poppins', sans-serif;-->
+<!--}-->
+
     </style>
 </head>
 <body style="background-color: #f2f6ff;">
@@ -34,7 +44,7 @@
 </nav>
 
 <div class="container mt-5">
-  <div class="card shadow-lg rounded-4 p-4 bg-white">
+  <div class="card shadow-lg rounded-4 p-4 bg-white ">
     <h3 class="mb-4 text-center" style="color:#000080;">Travel Agency Registration</h3>
 
     <form action="travelagency" method="post" onsubmit="return validateForm()" >

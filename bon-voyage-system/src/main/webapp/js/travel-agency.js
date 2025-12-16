@@ -89,3 +89,79 @@ function validateLoginForm() {
     }
     return true;
 }
+
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleBtn = document.getElementById("toggleBtn");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleBtn.innerHTML = '<i class="bi bi-eye-slash"></i>'; // change icon
+  } else {
+    passwordInput.type = "password";
+    toggleBtn.innerHTML = '<i class="bi bi-eye"></i>'; // change back
+  }
+}
+
+
+
+
+  function onSearchByChange(value) {
+      const input = document.getElementById("searchByValue");
+      const label = document.getElementById("searchLabel");
+      const errorMsg = document.getElementById("errorMsg");
+
+      input.value = "";
+      errorMsg.textContent = "";
+      input.oninput = null;
+
+      switch (value) {
+          case "email":
+              label.innerHTML = 'Enter Email to Search User:<span class="required">*</span>';
+              input.placeholder = "Enter email";
+              input.oninput = validateSearchEmail;
+              break;
+
+          case "name":
+              label.innerHTML = 'Enter Name to Search User:<span class="required">*</span>';
+              input.placeholder = "Enter name";
+              break;
+
+          case "phoneNo":
+              label.innerHTML = 'Enter Phone Number to Search User:<span class="required">*</span>';
+              input.placeholder = "Enter phone number";
+              input.oninput = validateSearchPhone;
+              break;
+
+          case "country":
+              label.innerHTML = 'Enter Country to Search User:<span class="required">*</span>';
+              input.placeholder = "Enter country";
+              break;
+
+          default:
+              label.innerHTML = 'Enter value to search:<span class="required">*</span>';
+              input.placeholder = "Enter value";
+      }
+  }
+
+
+
+  function validateSearchEmail() {
+      const input = document.getElementById("searchByValue");
+      const errorMsg = document.getElementById("errorMsg");
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      errorMsg.textContent = pattern.test(input.value)
+          ? ""
+          : "Invalid email format";
+  }
+
+  function validateSearchPhone() {
+      const input = document.getElementById("searchByValue");
+      const errorMsg = document.getElementById("errorMsg");
+      const pattern = /^[0-9]{10}$/;
+
+      errorMsg.textContent = pattern.test(input.value)
+          ? ""
+          : "Phone number must be 10 digits";
+  }

@@ -8,6 +8,8 @@ import com.xworkz.travel_agency_app.exceptions.DataNotUpdatedException;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepository;
 import com.xworkz.travel_agency_app.repository.TravelAgencyRepositoryImpl;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 public class TravelAgencyServiceImpl implements TravelAgencyService {
@@ -49,6 +51,35 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
         return travelAgencyRepository.findByEmail(searchDTO);
     }
 
+
+
+    @Override
+    public List<TravelAgencyDTO> validateAndSearchByName(SearchDTO searchDTO) {
+        if (searchDTO.getName() == null || searchDTO.getName().length() < 3) {
+            System.err.println("Invalid name entered");
+            return Collections.emptyList();
+        }
+        return travelAgencyRepository.findByName(searchDTO);
+    }
+
+    @Override
+    public List<TravelAgencyDTO> validateAndSearchByPhoneNo(SearchDTO searchDTO) {
+        if (searchDTO.getPhoneNo() == null || searchDTO.getPhoneNo().length() < 10) {
+            System.err.println("Invalid phone number entered");
+            return Collections.emptyList();
+        }
+        return travelAgencyRepository.findByPhoneNo(searchDTO);
+    }
+
+    @Override
+    public List<TravelAgencyDTO> validateAndSearchByCountry(SearchDTO searchDTO) {
+        if (searchDTO.getCountry() == null || searchDTO.getCountry().length() < 3) {
+            System.err.println("Invalid country entered");
+            return Collections.emptyList();
+        }
+        return travelAgencyRepository.findByCountry(searchDTO);
+    }
+
     @Override
     public TravelAgencyDTO updateUser(TravelAgencyDTO travelAgencyDTO) {
         boolean isInvalid = false;
@@ -59,7 +90,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
                 throw new DataInvalidException("Data must be valid");
             } else {
                 Optional<TravelAgencyDTO> isUpdated = travelAgencyRepository.update(travelAgencyDTO);
-                if (isUpdated.isPresent()) {
+                if (Collections.emptyList().equals(isUpdated)) {
                     System.out.println("Data updated successfully");
                     System.out.println("Updated data:" + isUpdated);
                     return isUpdated.get();

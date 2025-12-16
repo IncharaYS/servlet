@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @WebServlet(urlPatterns = "/login",loadOnStartup = 6)
 public class LoginServlet extends HttpServlet {
 
-    TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
+    private TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
 
     public LoginServlet(){
         System.out.println("Login servlet instance created");
@@ -36,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         if("Login".equalsIgnoreCase(action)) {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
-            SearchDTO searchDTO = new SearchDTO(email);
+            SearchDTO searchDTO = new SearchDTO(email,null,null,null);
 
             Optional<TravelAgencyDTO> userInfo = travelAgencyService.validateAndSearchByEmail(searchDTO);
 
@@ -49,12 +51,12 @@ public class LoginServlet extends HttpServlet {
                     httpSession.setAttribute("userName", userInfo.get().getFullName());
                     httpSession.setAttribute("userEmail", userInfo.get().getEmail());
 
-
+                    System.out.println("After setting attribute");
                     req.setAttribute("successMsg", "Logged In Successfully");
                     req.getRequestDispatcher("HomePage.jsp").forward(req, resp);
                 }
                 else {
-                    req.setAttribute("userInfo", userInfo.get());
+                    req.setAttribute("userInfo", userInfo);
                     req.setAttribute("wrongPwd","Entered password is incorrect");
                     req.getRequestDispatcher("Login.jsp").forward(req, resp);
                 }

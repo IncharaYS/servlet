@@ -11,6 +11,9 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class SearchDTO implements Serializable,Comparable<SearchDTO> {
     private String email;
+    private String name;
+    private String phoneNo;
+    private String country;
 
     @Override
     public int compareTo(SearchDTO o) {

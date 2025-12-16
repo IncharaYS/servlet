@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/travelagency",loadOnStartup = 1)
 public class RegisterServlet extends HttpServlet {
 
-    static final TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
+    private static final TravelAgencyService travelAgencyService=new TravelAgencyServiceImpl();
 
 
     public RegisterServlet(){

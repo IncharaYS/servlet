@@ -3,6 +3,8 @@ package com.xworkz.travel_agency_app.repository;
 import com.xworkz.travel_agency_app.dto.SearchDTO;
 import com.xworkz.travel_agency_app.dto.TravelAgencyDTO;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 public interface TravelAgencyRepository {
@@ -12,9 +14,25 @@ public interface TravelAgencyRepository {
         return false;
     }
 
-    Optional<TravelAgencyDTO> findByEmail(SearchDTO searchDTO);
+    default Optional<TravelAgencyDTO> findByEmail(SearchDTO searchDTO){
+        return Optional.empty();
+    }
 
-    Optional<TravelAgencyDTO> update(TravelAgencyDTO travelAgencyDTO);
+    default List<TravelAgencyDTO> findByName(SearchDTO searchDTO){
+        return Collections.emptyList();
+    }
+
+    default List<TravelAgencyDTO> findByPhoneNo(SearchDTO searchDTO){
+        return Collections.emptyList();
+    }
+
+    default List<TravelAgencyDTO> findByCountry(SearchDTO searchDTO){
+        return Collections.emptyList();
+    }
+
+    default Optional<TravelAgencyDTO> update(TravelAgencyDTO travelAgencyDTO){
+        return Optional.empty();
+    }
 }
 
 

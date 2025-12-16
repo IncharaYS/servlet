@@ -9,56 +9,61 @@
   <script src="js/travel-agency.js"></script>
   <style>
     body {
+        background-image: url('images/bg.png');
         background-color: #f2f6ff;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        backdrop-filter: blur(3px);
         font-family: 'Poppins', sans-serif;
     }
 
-    .navbar {
-        background: rgba(14,165,233,0.9);
-        backdrop-filter: blur(6px);
-    }
+        .navbar {
+            background: rgba(14,165,233,0.9);
+            backdrop-filter: blur(6px);
+        }
 
-    .navbar-brand {
-        font-weight: 600;
-        color: #fff !important;
-    }
+        .navbar-brand {
+            font-weight: 600;
+            color: #fff !important;
+        }
 
-    .nav-link {
-        color: #fff !important;
-    }
+        .nav-link {
+            color: #fff !important;
+        }
 
-    .nav-link:hover {
-        color: #e3f2fd !important;
-    }
+        .nav-link:hover {
+            color: #e3f2fd !important;
+        }
 
-    .login-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        padding: 40px 30px;
-        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
-        max-width:1000px;
-    }
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+            max-width:1000px;
+        }
 
-    .form-label {
-        color: #0ea5e9;
-    }
+        .form-label {
+            color: #0ea5e9;
+        }
 
-    .required {
-        color: red;
-    }
+        .required {
+            color: red;
+        }
 
-    .btn-primary {
-        background-color: #0ea5e9;
-        border: none;
-    }
+        .btn-primary {
+            background-color: #0ea5e9;
+            border: none;
+        }
 
-    .btn-primary:hover {
-        background-color: #0284c7;
-    }
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
 
-    small.text-danger {
-        font-size: 0.85rem;
-    }
+        small.text-danger {
+            font-size: 0.85rem;
+        }
   </style>
 </head>
 <body>

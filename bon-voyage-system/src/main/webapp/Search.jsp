@@ -7,6 +7,8 @@
     <title>Search page</title>
 
     <script src="js/travel-agency.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         .form-label{
             color:#000080;
@@ -15,9 +17,17 @@
         color:red;
         }
 
+    body {
+      background-image: url('images/bg.png');
+      background-color: #f2f6ff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(3px);
+      font-family: 'Poppins', sans-serif;
+}
     </style>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body style="background-color: #f2f6ff;">
@@ -32,23 +42,38 @@
             <ul class="navbar-nav ms-auto fs-5">
                 <li class="nav-item"><a class="nav-link fw-bold">${userName}</a></li>
                 <li class="nav-item"><a class="nav-link" href="home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow-lg rounded-4 p-4  w-75" style="max-width: 600px; background-color:#f2f6ff;">
+<div class="container d-flex justify-content-center py-5">
+    <div class="card shadow-lg rounded-4 p-4 w-100" style="max-width:800px;">
 
-        <form action="search" method="get">
+
+    <form action="search" method="get">
 
             <div class="mb-3">
-                <label for="email" class="form-label fw-bold">Enter Email to Search User:<span class="required">*</span></label>
-                <input type="text" id="email" name="email" class="form-control" placeholder="Enter your email"
-                       oninput="validateEmail(this)">
-                <small id="emailMsg" class="text-danger"></small>
+                <label for="searchBy" class="form-label fw-bold">Search By:</label>
+                <select id="searchBy" name="searchBy" class="form-select" onchange="onSearchByChange(this.value)">
+                    <option >--Select--</option>
+                    <option value="email">Email</option>
+                    <option value="name">Name</option>
+                    <option value="phoneNo">Phone Number</option>
+                    <option value="country">Country</option>
+                </select>
             </div>
+
+
+            <div class="mb-3">
+                <label id="searchLabel" for="searchByValue" class="form-label fw-bold">Enter value to search:
+                    <span class="required">*</span></label>
+                <input type="text" id="searchByValue" name="searchByValue" class="form-control" placeholder="Enter value">
+                <small id="errorMsg" class="text-danger"></small>
+            </div>
+
 
 
             <div class="mb-3">
@@ -62,20 +87,42 @@
             <h4 class="text-center text-danger mb-4">${failureMsg}</h4>
 
 
-        <c:if test="${userInfo!=null}">
-            <div class="alert alert-success mt-3">
-                <h4 style="color:#000080;">User Details:</h4>
-                <p><strong>Name: </strong>${userInfo.fullName}</p>
-                <p><strong>Email: </strong>${userInfo.email}</p>
-                <p><strong>Phone Number: </strong>${userInfo.phoneNo}</p>
-                <p><strong>Country: </strong>${userInfo.country}</p>
+        <c:if test="${not empty userInfo}">
+            <h4 class="text-center mb-3" style="color:#000080;">User Details:</h4>
 
-              <a href="update?email=${userInfo.email}">
-                Update Info
-              </a>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover align-middle text-center">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Country</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
 
+                    <tbody>
+                    <c:forEach items="${userInfo}" var="user">
+                        <tr>
+                            <td>${user.fullName}</td>
+                            <td>${user.email}</td>
+                            <td>${user.phoneNo}</td>
+                            <td>${user.country}</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary"
+                                   href="update?email=${user.email}">
+                                    Update
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </c:if>
+
+
 
 
     </div>
