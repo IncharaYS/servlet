@@ -29,7 +29,6 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
         boolean isSaved = false;
 
 
-
         String insertQuery = "insert into user_info(full_name,email,password,phone_no,country,is_deleted) values(?,?,?,?,?,0);";
         try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)){
 
