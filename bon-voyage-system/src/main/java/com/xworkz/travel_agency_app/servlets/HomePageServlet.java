@@ -30,7 +30,11 @@ public class HomePageServlet extends HttpServlet {
 
          Optional<TravelAgencyDTO> userInfo=travelAgencyService.validateAndSearchByEmail(searchDTO);
 
-         req.setAttribute("userInfo",userInfo.get());
+         if(userInfo.isPresent()) req.setAttribute("userInfo",userInfo.get());
+         else {
+             req.setAttribute("userInfo",null);
+             req.setAttribute("userNotFound","User Info is deleted");
+         }
 
 
         req.getRequestDispatcher("HomePage.jsp").forward(req,resp);

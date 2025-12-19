@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
         long phoneNo= NumberFormatCheck.parseLongSafe(req.getParameter("phoneNo"));
         String country=req.getParameter("country");
 
-        TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+        TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,(byte)3);
 
         System.out.println(travelAgencyDTO);
 

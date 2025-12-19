@@ -43,7 +43,9 @@
 
     <h4 class="text-center text-success mb-3">${successMsg}</h4>
     <h4 class="text-center text-danger mb-4">${failureMsg}</h4>
+    <h4 class="text-center text-danger mb-4">${userNotFound}</h4>
 
+    <c:if test="${userInfo!=null}">
     <h3 class="mb-4 ps-3" style="font-weight:700;">User Details:</h3>
     <hr>
 
@@ -53,6 +55,7 @@
       <p><strong>Phone Number:</strong> ${userInfo.phoneNo}</p>
       <p><strong>Country:</strong> ${userInfo.country}</p>
     </div>
+    </c:if>
 
 
   </div>

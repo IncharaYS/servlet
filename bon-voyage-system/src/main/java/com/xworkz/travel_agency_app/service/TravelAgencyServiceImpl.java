@@ -29,17 +29,37 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
 
             if (isInvalid) {
                 throw new DataInvalidException("Data must be valid");
-            } else {
-                if (!(travelAgencyRepository.checkDuplicateEmail(travelAgencyDTO.getEmail()))) {
-                    boolean isSaved = travelAgencyRepository.save(travelAgencyDTO);
-                    if (isSaved) System.out.println("Data saved successfully");
-                    else {
-                        System.err.println("Failed to save data");
-                        throw new DataNotSavedException("Failed to save data");
-                    }
-                } else System.err.println("Duplicate email is present");
-
             }
+
+            Optional<TravelAgencyDTO> travelAgencyDTO1=travelAgencyRepository.checkUserExists(travelAgencyDTO.getEmail());
+
+            if(Optional.empty().equals(travelAgencyDTO1)){
+                boolean isSaved = travelAgencyRepository.save(travelAgencyDTO);
+                if (isSaved) System.out.println("Data saved successfully");
+                else {
+                    System.err.println("Failed to save data");
+                    throw new DataNotSavedException("Failed to save data");
+                }
+            }
+            else {
+                System.err.println("Duplicate email is present in db(is_deleted is 1 or 0)");
+                if(travelAgencyDTO1.get().getIsDeleted()==0){
+                    throw new DuplicateEmailException("Email already exists");
+                }
+                else {
+                    System.out.println("Is deleted=1 is present in deleted list");
+                   Optional<TravelAgencyDTO> travelAgencyDTO2= travelAgencyRepository.update(travelAgencyDTO);
+
+                   if(travelAgencyDTO2.isPresent()){
+                       System.out.println("Data saved successfully");
+                   }
+                   else {
+                       System.err.println("Failed to save data");
+                       throw new DataNotSavedException("Failed to save data");
+                   }
+                }
+            }
+
         }
     }
 
@@ -107,7 +127,6 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
 
     @Override
     public boolean checkDuplicateEmail(String email) {
-        boolean isDuplicate=true;
         try {
             return travelAgencyRepository.checkDuplicateEmail(email);
         }

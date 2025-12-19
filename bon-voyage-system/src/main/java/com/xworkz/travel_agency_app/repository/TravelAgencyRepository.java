@@ -14,6 +14,10 @@ public interface TravelAgencyRepository {
         return false;
     }
 
+    default Optional<TravelAgencyDTO> checkUserExists(String email){
+        return Optional.empty();
+    }
+
     default Optional<TravelAgencyDTO> findByEmail(SearchDTO searchDTO){
         return Optional.empty();
     }

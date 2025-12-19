@@ -74,13 +74,13 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
                 try (ResultSet dupEmail = checkStatement.executeQuery()) {
 
                     if (dupEmail.next()) {
-                        isDuplicate=true;
                         throw new DuplicateEmailException("Entered email is already registered");
                     }
                 }
             }
             return isDuplicate;
     }
+
 
     @Override
     @SneakyThrows
@@ -104,9 +104,10 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
                     String password=userInfo.getString("password");
                     Long phoneNo=userInfo.getLong("phone_no");
                     String country=userInfo.getString("country");
+                    byte isDeleted=userInfo.getByte("is_deleted");
 
 
-                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,isDeleted);
                     return Optional.of(travelAgencyDTO);
 
                 }
@@ -139,9 +140,10 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
                     String password=userInfo.getString("password");
                     Long phoneNo=userInfo.getLong("phone_no");
                     String country=userInfo.getString("country");
+                    byte isDeleted=userInfo.getByte("is_deleted");
 
 
-                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,isDeleted);
                     customerList.add(travelAgencyDTO);
 
 
@@ -179,9 +181,10 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
                     String password=userInfo.getString("password");
                     Long phoneNo=userInfo.getLong("phone_no");
                     String country=userInfo.getString("country");
+                    byte isDeleted=userInfo.getByte("is_deleted");
 
 
-                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,isDeleted);
                     customerList.add(travelAgencyDTO);
 
 
@@ -219,9 +222,10 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
                     String password=userInfo.getString("password");
                     Long phoneNo=userInfo.getLong("phone_no");
                     String country=userInfo.getString("country");
+                    byte isDeleted=userInfo.getByte("is_deleted");
 
 
-                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,isDeleted);
                     customerList.add(travelAgencyDTO);
 
                 }
@@ -239,10 +243,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
     @Override
     public Optional<TravelAgencyDTO> update(TravelAgencyDTO travelAgencyDTO) {
 
- 
-
-        String updateQuery="update user_info set full_name=?,password=?,phone_no=?,country=? where email=? and is_deleted=0";
-
+        String updateQuery="update user_info set full_name=?,password=?,phone_no=?,country=?,is_deleted=0 where email=?";
 
         try(Connection connection=DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());
         PreparedStatement updateStatement=connection.prepareStatement(updateQuery)){
@@ -278,6 +279,35 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository{
         }
         return false;
     }
+
+
+    @Override
+    @SneakyThrows
+    public Optional<TravelAgencyDTO> checkUserExists(String email){
+        String userExistsQuery = "select * from user_info where email=?";
+        try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
+             PreparedStatement checkStatement = connection.prepareStatement(userExistsQuery)) {
+
+            checkStatement.setString(1,email);
+
+            try (ResultSet user = checkStatement.executeQuery()) {
+                if (user.next()) {
+                    String fullName=user.getString("full_name");
+                    String password=user.getString("password");
+                    Long phoneNo=user.getLong("phone_no");
+                    String country=user.getString("country");
+                    byte isDeleted=user.getByte("is_deleted");
+
+                    TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,isDeleted);
+                    return  Optional.of(travelAgencyDTO);
+
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+
 }
 
 

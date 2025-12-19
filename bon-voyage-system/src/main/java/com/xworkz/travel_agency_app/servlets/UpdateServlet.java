@@ -51,7 +51,7 @@ public class UpdateServlet extends HttpServlet {
         long phoneNo= NumberFormatCheck.parseLongSafe(req.getParameter("phoneNo"));
         String country=req.getParameter("country");
 
-        TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country);
+        TravelAgencyDTO travelAgencyDTO=new TravelAgencyDTO(fullName,email,password,phoneNo,country,(byte)0);
 
         try{
             TravelAgencyDTO updatedUser=travelAgencyService.updateUser(travelAgencyDTO);
