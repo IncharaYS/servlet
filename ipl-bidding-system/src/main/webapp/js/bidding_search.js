@@ -1,6 +1,5 @@
 function onPlayerTypeChange() {
     const type = document.getElementById("playerType").value;
-
     hideAll();
 
     if (type === "BATTER") {
@@ -20,6 +19,8 @@ function onPlayerTypeChange() {
 
     document.getElementById("submit").style.display = "block";
 }
+
+
 
 function hideAll() {
     document.getElementById("battingDiv").style.display = "none";

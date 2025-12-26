@@ -43,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
         int noOfStumps=NumberFormatCheck.parseIntSafe(req.getParameter("noOfStumps"));
 
 
-        PlayerDTO playerDTO=new PlayerDTO(playerName,password,age,playerType,state,battingAverage,bowlingAverage,noOfStumps,0,null);
+        PlayerDTO playerDTO=new PlayerDTO(playerName,password,age,playerType,state,battingAverage,bowlingAverage,noOfStumps,0,null,0);
 
         System.out.println(playerDTO);
 

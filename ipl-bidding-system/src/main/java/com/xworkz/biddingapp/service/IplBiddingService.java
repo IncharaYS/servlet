@@ -29,5 +29,9 @@ public interface IplBiddingService {
         return Collections.emptyList();
     }
 
+    default boolean validateAndUpdateBid(PlayerDTO playerDTO){
+        return false;
+    }
+
 
 }

@@ -81,9 +81,10 @@ public class IplBiddingRepositoryImpl implements IplBiddingRepository{
                     double bidAmount= playerInfo.getDouble("bid_amount");
                     String company= playerInfo.getString("company");
                     String password= playerInfo.getString("password");
+                    int bidCount= playerInfo.getInt("bid_count");
 
 
-                    PlayerDTO playerDTO =new PlayerDTO(playerName,password,age,playerType,state,battingAverage,bowlingAverage,noOfStumps,bidAmount,company);
+                    PlayerDTO playerDTO =new PlayerDTO(playerName,password,age,playerType,state,battingAverage,bowlingAverage,noOfStumps,bidAmount,company,bidCount);
                     return Optional.of(playerDTO);
                 }
             }
@@ -130,9 +131,10 @@ public class IplBiddingRepositoryImpl implements IplBiddingRepository{
 
         String searchQuery = "select * from players where player_type=? and batting_average>=? and bowling_average>=? and no_of_stumps>=?;";
         try(Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(),DbConstants.USERNAME.getProperties(),DbConstants.PASSWORD.getProperties());
-            PreparedStatement preparedStatement = connection.prepareStatement(searchQuery);){
+            PreparedStatement preparedStatement = connection.prepareStatement(searchQuery)){
 
             preparedStatement.setString(1,searchDTO.getPlayerType());
+
             preparedStatement.setDouble(2,searchDTO.getBattingAverage());
             preparedStatement.setDouble(3,searchDTO.getBowlingAverage());
             preparedStatement.setDouble(4,searchDTO.getNoOfStumps());
@@ -140,6 +142,7 @@ public class IplBiddingRepositoryImpl implements IplBiddingRepository{
             ResultSet resultSet = preparedStatement.executeQuery();
 
             List<PlayerDTO> playerDTOList = new ArrayList<>();
+
             while (resultSet.next()){
                 String name =  resultSet.getString("player_name");
                 int age =   resultSet.getInt("age");
@@ -151,11 +154,14 @@ public class IplBiddingRepositoryImpl implements IplBiddingRepository{
                 String password = resultSet.getString("password");
                 String company = resultSet.getString("company");
                 double bidAmount = resultSet.getDouble("bid_amount");
+                int bidCount = resultSet.getInt("bid_count");
 
-                PlayerDTO playerDTO = new PlayerDTO(name,password,age,playerType,state,battingAvg,bowlingAvg,noOfStumps,bidAmount,company);
+                PlayerDTO playerDTO = new PlayerDTO(name,password,age,playerType,state,battingAvg,bowlingAvg,noOfStumps, bidCount,company,bidCount);
+
                 playerDTOList.add(playerDTO);
             }
 
+            System.out.println(playerDTOList);
             return playerDTOList;
 
 
@@ -164,5 +170,32 @@ public class IplBiddingRepositoryImpl implements IplBiddingRepository{
         }
 
         return Collections.emptyList();
+    }
+
+    @Override
+    @SneakyThrows
+    public boolean updateBid(PlayerDTO playerDTO) {
+
+        String updateBidCount = "update players set bid_count=bid_count+1 where player_name=? and bid_count<3";
+
+        String updateBidQuery = "update players set bid_amount=?,company=? where player_name=? and  ? > bid_amount;";
+        try (Connection connection = DriverManager.getConnection(DbConstants.URL.getProperties(), DbConstants.USERNAME.getProperties(), DbConstants.PASSWORD.getProperties());
+             PreparedStatement updateStatement = connection.prepareStatement(updateBidQuery);
+             PreparedStatement updateCountStatement = connection.prepareStatement(updateBidCount)) {
+
+            updateCountStatement.setString(1,playerDTO.getPlayerName());
+            updateCountStatement.executeUpdate();
+
+            updateStatement.setDouble(1, playerDTO.getBidAmount());
+            updateStatement.setString(2, playerDTO.getCompany());
+            updateStatement.setString(3, playerDTO.getPlayerName());
+            updateStatement.setDouble(4, playerDTO.getBidAmount());
+
+            int rows = updateStatement.executeUpdate();
+            System.out.println("No of rows updated:" + rows);
+
+            if (rows >= 0) return true;
+        }
+        return false;
     }
 }

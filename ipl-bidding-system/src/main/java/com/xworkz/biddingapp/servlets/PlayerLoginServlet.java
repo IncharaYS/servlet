@@ -30,6 +30,7 @@ public class PlayerLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String playerName = req.getParameter("playerName");
         String password = req.getParameter("password");
 
@@ -37,9 +38,13 @@ public class PlayerLoginServlet extends HttpServlet {
 
         Optional<PlayerDTO> playerInfo = iplBiddingService.validateAndSearchByName(searchDTO);
 
-        if (playerInfo.isPresent()) {
 
+        System.out.println(playerInfo);
+
+        if (playerInfo.isPresent()) {
             if (playerInfo.get().getPassword().equals(password)) {
+
+                System.out.println("Correct password");
 
                 HttpSession session = req.getSession(true);
                 session.setAttribute("playerName", playerInfo.get().getPlayerName());
@@ -50,6 +55,7 @@ public class PlayerLoginServlet extends HttpServlet {
                 req.getRequestDispatcher("PlayerInfo.jsp").forward(req, resp);
 
             } else {
+                System.out.println("Incorrect password");
                 req.setAttribute("loginError", "Incorrect password");
                 req.getRequestDispatcher("PlayerLogin.jsp").forward(req, resp);
             }

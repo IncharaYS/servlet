@@ -21,5 +21,6 @@ public class PlayerDTO implements Serializable {
     private int noOfStumps;
     private double bidAmount;
     private String company;
+    private int bidCount;
 
 }

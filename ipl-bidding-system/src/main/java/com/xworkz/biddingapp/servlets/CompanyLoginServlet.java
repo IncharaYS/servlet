@@ -47,7 +47,7 @@ public class CompanyLoginServlet extends HttpServlet {
                 req.setAttribute("successMsg", "Company Logged In Successfully");
                 req.setAttribute("companyInfo", companyInfo.get());
 
-                req.getRequestDispatcher("BiddingPage.jsp").forward(req, resp);
+                req.getRequestDispatcher("Search.jsp").forward(req, resp);
 
             } else {
                 req.setAttribute("loginError", "Incorrect password");

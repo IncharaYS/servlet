@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
-    <title>Player Bidding Search</title>
+    <title>Player Bidding</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        .form-label { color:#000080; }
-        .required { color:red; }
+        .form-label {
+            color: #000080;
+        }
+        .required {
+            color: red;
+        }
 
         body {
-            min-height: 100vh;
             background-image: url('images/bg.png');
+            background-color: #f2f6ff;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(5px);
             font-family: 'Poppins', sans-serif;
         }
 
@@ -36,7 +39,6 @@
 
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg p-2">
     <div class="container-fluid">
         <a class="navbar-brand fs-3 text-white">IPL Bidding System</a>
@@ -50,164 +52,123 @@
                     <a class="nav-link" href="companyHome">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="search">Search Player</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="logout">Logout</a>
                 </li>
+
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- SEARCH CARD -->
 <div class="container mt-5 d-flex justify-content-center">
-    <div class="card shadow-lg rounded-4 p-4 bg-white w-100" style="max-width: 420px;">
+    <div class="card shadow-lg rounded-4 p-4 bg-white w-100"
+         style="max-width: 460px;">
 
         <h3 class="mb-4 text-center" style="color:#000080;">
-            Player Bidding Search
+            Player Bidding
         </h3>
 
-        <form action="search" method="get">
+        <form action="bid" method="get" onsubmit="return validateBiddingForm()">
 
-            <!-- PLAYER TYPE -->
             <div class="mb-3">
                 <label class="form-label fw-bold">
-                    Player Type:<span class="required">*</span>
+                    Player Name:
                 </label>
-                <select id="playerType" name="playerType"
-                        class="form-select"
-                        onchange="onPlayerTypeChange()" required>
-                    <option value="">-- Select --</option>
-                    <option value="BATTER">Batter</option>
-                    <option value="BOWLER">Bowler</option>
-                    <option value="ALLROUNDER">All-Rounder</option>
-                    <option value="KEEPER">Wicket Keeper</option>
 
-                </select>
+                <input type="text" name="playerName" disabled class="form-control" id="playerName" value="${player.playerName}"
+                        required>
+                <input type="text" name="playerName"  class="form-control" hidden value="${player.playerName}">
             </div>
 
-            <!-- BATTING -->
+
+
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    Age:
+                </label>
+                <input type="number" name="age" id="age" class="form-control" value="${player.age}" disabled required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    State:
+                </label>
+                <input type="text" name="state" class="form-control" id="state" value="${player.state}" disabled required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    Player Type:
+                </label>
+                <input type="text" name="playerType" class="form-control" id="playerType" value="${player.playerType}" disabled required>
+
+            </div>
+
+
+
+
             <div class="mb-3" id="battingDiv" style="display:none;">
-                <label class="form-label fw-bold">Minimum Batting Average:</label>
-                <input type="number" step="0.01"
-                       name="battingAverage"
-                       class="form-control"
-                       placeholder="Enter batting average">
+                <label class="form-label fw-bold">
+                    Batting Average:
+                </label>
+                <input type="number"  id="battingAverage" name="battingAverage" class="form-control" value="${player.battingAverage}" disabled>
             </div>
 
-            <!-- BOWLING -->
             <div class="mb-3" id="bowlingDiv" style="display:none;">
-                <label class="form-label fw-bold">Maximum Bowling Average:</label>
-                <input type="number" step="0.01"
-                       name="bowlingAverage"
-                       class="form-control"
-                       placeholder="Enter bowling average">
+                <label class="form-label fw-bold">
+                    Bowling Average:
+                </label>
+                <input type="number" id="bowlingAverage" name="bowlingAverage" class="form-control" value="${player.bowlingAverage}" disabled>
             </div>
 
-            <!-- STUMPS -->
             <div class="mb-3" id="stumpsDiv" style="display:none;">
-                <label class="form-label fw-bold">Minimum No. of Stumps:</label>
-                <input type="number"
-                       name="noOfStumps"
-                       class="form-control"
-                       placeholder="Enter stumps count">
+                <label class="form-label fw-bold">
+                    No. of Stumps:
+                </label>
+                <input type="number" id="noOfStumps" name="noOfStumps" class="form-control" value="${player.noOfStumps}" disabled>
             </div>
 
-            <!-- BUTTONS -->
+            <div class="mb-3" id="companyDiv" style="display:block;">
+                <label class="form-label fw-bold">
+                    Company:
+                </label>
+                <input type="text" id="company" name="company" class="form-control" value="${companyName}" disabled>
+                <input type="text"  name="company" class="form-control" value="${companyName}" hidden>
+
+            </div>
+
+            <div class="mb-3" id="bidAmountDiv" style="display:block;">
+                <label class="form-label fw-bold">
+                    Bid Amount:<span class="required">*</span>
+                </label>
+                <input type="text" id="bidAmount" name="bidAmount" class="form-control" required placeholder="Enter the amount you want to bid">
+            </div>
+
             <div class="text-center mt-4" id="submit" style="display:none;">
-                <button type="submit" name="action" value="Submit"
-                        class="btn btn-primary px-5 py-2 rounded-3">
-                    Search Players
-                </button>
+                <input type="submit" name="action" class="btn btn-primary px-5" value="Bid">
 
-                <button type="submit" name="action" value="Clear"
-                        class="btn btn-secondary px-5 py-2 rounded-3 ms-2">
-                    Clear
-                </button>
             </div>
+            <br>
+
+
 
         </form>
+
+
     </div>
 </div>
 
 
-<c:if test="${not empty searchList}">
-    <div class="container mt-4">
-        <div class="card shadow-lg rounded-4 p-3 bg-white">
-            <table class="table table-bordered">
-                <thead class="table-info text-center">
-                <tr>
-                    <th>Player Id</th>
-                    <th>Player Name</th>
-                    <th>Age</th>
-                    <th>State</th>
-                    <th>Player Type</th>
-
-                    <c:if test="${selectedPlayerType eq 'BATTER'}">
-                        <td>${player.battingAverage}</td>
-                    </c:if>
-
-                    <c:if test="${selectedPlayerType eq 'BOWLER'}">
-                        <td>${player.bowlingAverage}</td>
-                    </c:if>
-
-                    <c:if test="${selectedPlayerType eq 'ALLROUNDER'}">
-                        <td>${player.battingAverage}</td>
-                        <td>${player.bowlingAverage}</td>
-                    </c:if>
-
-                    <c:if test="${selectedPlayerType eq 'KEEPER'}">
-                        <td>${player.battingAverage}</td>
-                        <td>${player.noOfStumps}</td>
-                    </c:if>
-
-
-                    <th>Bid</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <c:forEach var="player" items="${searchList}">
-                    <tr>
-                        <td class="text-center">${player.id}</td>
-                        <td>${player.playerName}</td>
-                        <td>${player.age}</td>
-                        <td>${player.state}</td>
-                        <td>${player.playerType}</td>
-
-                        <c:if test="${selectedPlayerType eq 'BATTER'}">
-                            <th>Batting Avg</th>
-                        </c:if>
-
-                        <c:if test="${selectedPlayerType eq 'BOWLER'}">
-                            <th>Bowling Avg</th>
-                        </c:if>
-
-                        <c:if test="${selectedPlayerType eq 'ALLROUNDER'}">
-                            <th>Batting Avg</th>
-                            <th>Bowling Avg</th>
-                        </c:if>
-
-                        <c:if test="${selectedPlayerType eq 'KEEPER'}">
-                            <th>Batting Avg</th>
-                            <th>No of Stumps</th>
-                        </c:if>
-
-
-                        <td class="text-center">
-                            <a href="playerBid?playerId=${player.id}"
-                               class="btn btn-primary btn-sm">
-                                Bid
-                            </a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</c:if>
-
 <script src="js/bidding_search.js"></script>
+<script>
+    window.onload = function () {
+    onPlayerTypeChange();
+};
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

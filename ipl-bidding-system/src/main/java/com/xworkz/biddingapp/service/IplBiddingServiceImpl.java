@@ -8,8 +8,8 @@ import com.xworkz.biddingapp.dto.PlayerSearchDTO;
 import com.xworkz.biddingapp.exceptions.InvalidDataException;
 import com.xworkz.biddingapp.repository.IplBiddingRepository;
 import com.xworkz.biddingapp.repository.IplBiddingRepositoryImpl;
+import lombok.SneakyThrows;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,12 +36,15 @@ public class IplBiddingServiceImpl implements IplBiddingService{
 
     @Override
     public Optional<PlayerDTO> validateAndSearchByName(PlayerSearchDTO playerSearchDTO) {
+
+
         if (playerSearchDTO.getPlayerName() == null || playerSearchDTO.getPlayerName().length() < 3) {
             System.err.println("Invalid player name entered");
             return Optional.empty();
         }
         return iplBiddingRepository.findByName(playerSearchDTO);
     }
+
 
     @Override
     public Optional<CompanyDTO> validateAndSearchByEmail(CompanySearchDTO companySearchDTO) {
@@ -135,5 +138,25 @@ public class IplBiddingServiceImpl implements IplBiddingService{
         return iplBiddingRepository.findPlayers(dto);
     }
 
+
+
+    @Override
+    @SneakyThrows
+    public boolean validateAndUpdateBid(PlayerDTO playerDTO){
+        boolean isValid=validateFields(playerDTO);
+        boolean updatedBid=false;
+
+
+        if(playerDTO.getBidAmount()<0){
+            isValid=false;
+            System.err.println("Bidding amount entered is invalid");
+        }
+
+        if(isValid){
+            System.out.println("All fields are valid");
+            updatedBid=iplBiddingRepository.updateBid(playerDTO);
+        }
+        return updatedBid;
+    }
 
 }

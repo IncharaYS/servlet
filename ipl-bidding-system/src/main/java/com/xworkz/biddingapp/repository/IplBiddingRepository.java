@@ -5,6 +5,7 @@ import com.xworkz.biddingapp.dto.CompanySearchDTO;
 import com.xworkz.biddingapp.dto.PlayerDTO;
 import com.xworkz.biddingapp.dto.PlayerSearchDTO;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +24,12 @@ public interface IplBiddingRepository {
         return Optional.empty();
     }
 
-    public List<PlayerDTO> findPlayers(PlayerSearchDTO searchDTO);
+    default List<PlayerDTO> findPlayers(PlayerSearchDTO searchDTO){
+        return Collections.emptyList();
+    }
+
+
+    default boolean updateBid(PlayerDTO playerDTO){
+        return false;
+    }
 }
